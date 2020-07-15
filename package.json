@@ -1,0 +1,28 @@
+{
+  "name": "build-a-base",
+  "version": "1.0.0",
+  "description": "Builds a MongoDB database from a user-supplied spreadsheet",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreaGT91/Build-A-Base.git"
+  },
+  "author": "Andrea Bentley, Katherine Jones, Isaiah Kelly, Robert Philizaire",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreaGT91/Build-A-Base/issues"
+  },
+  "homepage": "https://github.com/AndreaGT91/Build-A-Base#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.24",
+    "passport": "^0.4.1",
+    "path": "^0.12.7",
+    "session": "^0.1.0",
+    "xlsx": "^0.16.3"
+  }
+}
