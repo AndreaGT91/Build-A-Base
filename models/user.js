@@ -18,7 +18,11 @@ const userSchema = new Schema({
   lastName: { type: String, required: true }
 });
 
-// Pre and post save() hooks are not executed on update(), findOneAndUpdate(), etc. 
+userSchema.virtual("fullName").get(function () {
+  return this.lastName + ", " + this.firstName;
+});
+
+// TODO: Pre and post save() hooks are not executed on update(), findOneAndUpdate(), etc. 
 userSchema.pre("save", function(next) {
   if (!this.isModified("password")) {
     return next();
