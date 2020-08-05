@@ -4,10 +4,11 @@ const Schema = mongoose.Schema;
 const baseSchema = new Schema({
   creatorID: { type: Number, required: true },
   baseName: { type: String, required: true },
-  users: [{
-    userID: Number,
-    admin: Boolean,
-    editor: Boolean
+  schema: [{
+    fieldName: String,
+    fieldType: { 
+      type: String,
+      enum: ["String", "Number", "Date", "Boolean"] }
   }]
 });
 
