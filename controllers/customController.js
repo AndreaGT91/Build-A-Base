@@ -1,29 +1,28 @@
 const db = require("../models");
 
-// Defining methods for the Bases Controller
+// Defining methods for the custom controllers
 module.exports = {
-  findByUserId: function(request, response) {
-    db.Bases
-      .find({ creatorID: request.params.id })
+  findAll: function(request, response) {
+    db.createCustom(request.params.baseName, request.body.baseModel)
+      .find()
       .then(dbModel => response.json(dbModel))
       .catch(error => response.status(422).json(error));
   },
   create: function(request, response) {
-    db.Bases
-      .create(request.body)
+    db.createCustom(request.params.baseName, request.body.baseModel)
+      .create(request.body.data)
       .then(dbModel => response.json(dbModel))
       .catch(error => response.status(422).json(error));
   },
   update: function(request, response) {
-    db.Bases
-      .findOneAndUpdate({ _id: request.body._id }, request.body)
+    db.createCustom(request.params.baseName, request.body.baseModel)
+      .findByIdAndUpdate(request.body.data._id, request.body.data, { new: true })
       .then(dbModel => response.json(dbModel))
       .catch(error => response.status(422).json(error));
   },
   remove: function(request, response) {
-    db.Bases
-      .findById({ _id: request.params.id })
-      .then(dbModel => dbModel.remove())
+    db.createCustom(request.params.baseName, request.body.baseModel)
+      .findByIdAndDelete(request.params.id)
       .then(dbModel => response.json(dbModel))
       .catch(error => response.status(422).json(error));
   }
