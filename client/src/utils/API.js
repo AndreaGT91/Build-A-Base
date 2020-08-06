@@ -31,20 +31,20 @@ export default {
     return axios.delete("api/base/" + id);
   },
 
-  getCustom: function(baseName) {
-    return axios.get("api/custom/" + baseName);
+  getCustom: function(baseName, baseModel) {
+    return axios.get("api/custom/" + baseName, baseModel);
   },
 
   createCustom: function(baseName, baseModel) {
     return axios.post("api/custom/" + baseName, baseModel);
   },
 
-  updateCustom: function(baseName, baseData) {
-    return axios.put("api/custom/" + baseName, baseData);
+  updateCustom: function(baseName, baseModel) {
+    return axios.put("api/custom/" + baseName, baseModel);
   },
 
-  deleteCustom: function(baseName, id) {
-    return axios.delete("api/custom/" + baseName + "/" + id);
+  deleteCustom: function(baseName, id, baseModel) {
+    return axios.delete("api/custom/" + baseName + "/" + id, baseModel);
   }
 
 };
