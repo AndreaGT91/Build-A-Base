@@ -6,8 +6,12 @@ router.route("/")
   .post(userController.create)
   .put(userController.update);
 
+// Matches with "/api/user/login"
+router.route("/login")
+  .post(userController.login)
+
 // Matches with "/api/user/:email"
 router.route("/:email")
   .get(userController.findByEmail);
-  
+
 module.exports = router;
