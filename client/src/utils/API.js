@@ -45,15 +45,79 @@ export default {
 
   deleteCustom: function(baseName, id, baseModel) {
     return axios.delete("api/custom/" + baseName + "/" + id, baseModel);
-  }
-  // data.forEach( function ( m ) {
+  },
 
-  //   for ( var key in m ) {
-  
-  //     console.log( key ); // "who"
-  //     console.log( m[key] ); // "Arthur"
-  
-  //   }
-  
-  // });
+  // Returns array of maps, representing each non-header row in spreadsheet
+  // Key names are the column header names
+  readSpreadsheet: function(fileName) {
+    axios.post("/api/xlsx", { filename: fileName })
+      .then(response => { 
+        const data = [];
+        let rowMap;
+
+        // Convert row objects to maps to preserve property order; convert to integer if number
+        response.data.forEach(row => {
+          rowMap = new Map();
+          
+          for (let key in row) {
+            if (isNaN(row[key])) {
+              rowMap.set(key, row[key]);
+            }
+            else {
+              rowMap.set(key, parseInt(row[key]));
+            }
+          };
+          data.push(rowMap);
+        });
+        
+        return data 
+      })
+      .catch(error => {
+        console.log("Error reading spreadsheet ", error);
+        return [];
+      });
+  }
+
+
+//   Iterating Map with for..of
+// Maps can be iterated using a for..of loop:
+
+// let myMap = new Map()
+// myMap.set(0, 'zero')
+// myMap.set(1, 'one')
+
+// for (let [key, value] of myMap) {
+//   console.log(key + ' = ' + value)
+// }
+// // 0 = zero
+// // 1 = one
+
+// for (let key of myMap.keys()) {
+//   console.log(key)
+// }
+// // 0
+// // 1
+
+// for (let value of myMap.values()) {
+//   console.log(value)
+// }
+// // zero
+// // one
+
+// for (let [key, value] of myMap.entries()) {
+//   console.log(key + ' = ' + value)
+// }
+// // 0 = zero
+// // 1 = one
+
+
+// Iterating Map with forEach()
+// Maps can be iterated using the forEach() method:
+
+// myMap.forEach(function(value, key) {
+//   console.log(key + ' = ' + value)
+// })
+// // 0 = zero
+// // 1 = one
+
 };
