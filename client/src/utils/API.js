@@ -46,5 +46,14 @@ export default {
   deleteCustom: function(baseName, id, baseModel) {
     return axios.delete("api/custom/" + baseName + "/" + id, baseModel);
   }
+  // data.forEach( function ( m ) {
 
+  //   for ( var key in m ) {
+  
+  //     console.log( key ); // "who"
+  //     console.log( m[key] ); // "Arthur"
+  
+  //   }
+  
+  // });
 };
