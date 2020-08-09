@@ -2,12 +2,10 @@
   "name": "build-a-base",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
-  "secure": false,
+  "proxy": "http://localhost:3000/",
   "dependencies": {
     "aos": "^2.3.4",
     "axios": "^0.18.0",
-    "path": "^0.12.7",
     "bootstrap": "^4.5.0",
     "node-sass": "^4.14.1",
     "react": "^16.6.3",
