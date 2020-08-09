@@ -7,12 +7,9 @@
   "dependencies": {
     "aos": "^2.3.4",
     "axios": "^0.18.0",
-<<<<<<< HEAD
     "path": "^0.12.7",
-=======
     "bootstrap": "^4.5.0",
     "node-sass": "^4.14.1",
->>>>>>> 1e51640b48ae85980809cd82885994864529c61d
     "react": "^16.6.3",
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.6.3",
