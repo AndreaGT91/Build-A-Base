@@ -31,6 +31,7 @@ userSchema.pre("save", function(next) {
   next();
 });
 
+// ********Had trouble making this work in controller; added compare logic in controller and working now, may not need this code************
 userSchema.methods.comparePassword = function(plaintext, callback) {
   return callback(null, bcrypt.compareSync(plaintext, this.password));
 };
