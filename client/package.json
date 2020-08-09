@@ -6,6 +6,7 @@
   "secure": false,
   "dependencies": {
     "axios": "^0.18.0",
+    "path": "^0.12.7",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-router-dom": "^5.1.2",

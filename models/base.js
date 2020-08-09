@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const baseSchema = new Schema({
-  creatorID: { type: Number, required: true },
+  creatorID: { type: Schema.Types.ObjectId, required: true },
   baseName: { type: String, required: true },
   model: [{
     fieldName: String,

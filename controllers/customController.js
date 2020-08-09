@@ -9,10 +9,20 @@ module.exports = {
       .catch(error => response.status(422).json(error));
   },
   create: function(request, response) {
-    db.createCustom(request.params.baseName, request.body.baseModel)
-      .create(request.body.data)
-      .then(dbModel => response.json(dbModel))
-      .catch(error => response.status(422).json(error));
+    console.log("Controller.create ", request.body);
+    // If data is array, insertMany; if object, create one
+    if (Array.isArray(request.body.data)) {
+      db.createCustom(request.params.baseName, request.body.baseModel)
+        .insertMany(request.body.data)
+        .then(dbModel => response.json(dbModel))
+        .catch(error => response.status(422).json(error));
+    }
+    else {
+      db.createCustom(request.params.baseName, request.body.baseModel)
+        .create(request.body.data)
+        .then(dbModel => response.json(dbModel))
+        .catch(error => response.status(422).json(error));
+    };
   },
   update: function(request, response) {
     db.createCustom(request.params.baseName, request.body.baseModel)

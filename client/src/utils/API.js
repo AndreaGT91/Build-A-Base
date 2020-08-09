@@ -1,4 +1,7 @@
 import axios from "axios";
+import path from "path";
+
+import mongoose from "mongoose"; // TODO: For referencing ObjectID
 
 export default {
 
@@ -47,77 +50,60 @@ export default {
     return axios.delete("api/custom/" + baseName + "/" + id, baseModel);
   },
 
-  // Returns array of maps, representing each non-header row in spreadsheet
-  // Key names are the column header names
   readSpreadsheet: function(fileName) {
     axios.post("/api/xlsx", { filename: fileName })
       .then(response => { 
-        const data = [];
-        let rowMap;
+        const fileData = response.data;
 
-        // Convert row objects to maps to preserve property order; convert to integer if number
-        response.data.forEach(row => {
-          rowMap = new Map();
-          
-          for (let key in row) {
-            if (isNaN(row[key])) {
-              rowMap.set(key, row[key]);
-            }
-            else {
-              rowMap.set(key, parseInt(row[key]));
-            }
+        if (fileData.length === 0) {
+          return []
+        };
+
+        const firstRow = fileData[0]; // Only need first row to get field names and types
+        const baseModel = [];
+        let newField;
+
+        // Find all the field names and field types by looking at first row of data
+        for (let key in firstRow) {
+          newField = new Object();
+          newField.fieldName = key;
+
+          if (firstRow[key].match(/^\d{4}\-\d{2}\-\d{2}$/)) {
+            newField.fieldType = "Date";
+          }
+          else if (isNaN(firstRow[key])) {
+            newField.fieldType = "String";
+          }
+          else {
+            newField.fieldType = "Number";
           };
-          data.push(rowMap);
-        });
-        
-        return data 
+
+          baseModel.push(newField);
+        };
+
+        const newBase = {
+          creatorID: mongoose.Types.ObjectId("5f2f6c59137ead7a45a692ea"),  // TODO: Need ID of current user
+          baseName: path.basename(fileName, path.extname(fileName)),
+          model: baseModel
+        };
+
+        // Add entry to Bases collection, then add records to new custom collection
+        this.createBase(newBase)
+          .then(() => axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData }))
+          .then(() => this.getCustom(newBase.baseName, newBase.model))
+          // .then((response) => {return response})
+          .then((response) => {
+            console.log(response);
+            return response
+          })
+          .catch(error => {
+            console.log("Error creating database: ", error);
+            return []
+          });
       })
       .catch(error => {
-        console.log("Error reading spreadsheet ", error);
-        return [];
+        console.log("Error reading file: ", error)
+        return []
       });
   }
-
-
-//   Iterating Map with for..of
-// Maps can be iterated using a for..of loop:
-
-// let myMap = new Map()
-// myMap.set(0, 'zero')
-// myMap.set(1, 'one')
-
-// for (let [key, value] of myMap) {
-//   console.log(key + ' = ' + value)
-// }
-// // 0 = zero
-// // 1 = one
-
-// for (let key of myMap.keys()) {
-//   console.log(key)
-// }
-// // 0
-// // 1
-
-// for (let value of myMap.values()) {
-//   console.log(value)
-// }
-// // zero
-// // one
-
-// for (let [key, value] of myMap.entries()) {
-//   console.log(key + ' = ' + value)
-// }
-// // 0 = zero
-// // 1 = one
-
-
-// Iterating Map with forEach()
-// Maps can be iterated using the forEach() method:
-
-// myMap.forEach(function(value, key) {
-//   console.log(key + ' = ' + value)
-// })
-// // 0 = zero
-// // 1 = one
-
 };
