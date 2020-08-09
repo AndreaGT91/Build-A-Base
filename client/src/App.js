@@ -1,15 +1,58 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import SectionOne from "./components/SectionOne";
+import SectionTwo from "./components/SectionTwo";
+import SectionThree from "./components/SectionThree";
+import SectionFour from "./components/SectionFour";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import MyDatabase from "./pages/MyDatabase";
+import { Parallax } from "react-parallax";
+import "./App.scss";
+
+
+import FirstImage from "./images/1.png"
+
+const image2 = "https://media-public.canva.com/MAC_ThKmzeg/1/thumbnail_large-1.jpg"
+const image3 = "https://media-public.canva.com/MADCCLp1-lc/1/thumbnail_large-1.jpg"
+
+const inlineStyle = {
+  background: '#fff',
+  left: '50%',
+  top: '50%',
+  position: 'absolute',
+  padding: '20px',
+}
 
 import API from "./utils/API";
 
 function App() {
   API.readSpreadsheet("/Users/andreabentley/Documents/github/Build-A-Base/sample-data/1010-Sample-Information.xlsx");
   return (
-    <Router>
+    <div className="div1">
+      <Router>
+      <div>
+       
         <Switch>
+          <Route exact path="/Login"><Login /></Route>
+          <Route exact path="/SignUp"><SignUp /></Route>
+          <Route exact path="/Home"><Home /></Route>
+          <Route exact path="/Dashboard"><Dashboard /></Route>
+          <Route exact path="/MyDatabase"><MyDatabase /></Route>
+
+          <Route exact path="/*"><Home /></Route>
+
         </Switch>
-    </Router>
+        </div>
+        </Router>
+       
+    </div>
+         
+     
   );
 }
 
