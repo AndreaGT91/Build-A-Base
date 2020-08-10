@@ -14,6 +14,7 @@ import MyDatabase from "./pages/MyDatabase";
 import { Parallax } from "react-parallax";
 import "./App.scss";
 
+import API from "./utils/API";  // TODO: Just for testing
 
 import FirstImage from "./images/1.png"
 
@@ -28,9 +29,8 @@ const inlineStyle = {
   padding: '20px',
 }
 
-import API from "./utils/API";
-
 function App() {
+  // TODO: Just for testing
   API.readSpreadsheet("/Users/andreabentley/Documents/github/Build-A-Base/sample-data/1010-Sample-Information.xlsx");
   return (
     <div className="div1">

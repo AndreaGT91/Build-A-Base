@@ -21,14 +21,20 @@ module.exports = {
       if (workbook.SheetNames.length > 0) {
         result = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {header:1, raw:false});
 
-        // First object in array is column headers. Need to ensure none begin with "$" or contain "."s
+        // First item in array is column headers. Need to ensure none begin with "$" or contain "."s
         // These will be the field names in MongoDB, and those are illegal characters
         if (result.length > 0) {
-          result[0].forEach(header => {
-            header = header.replace(/\./g, ""); // Remove all "."
+          result[0].forEach((header, index) => {
+            // Check if header is null, undefined, or empty string
+            if ((!header) || (header.trim() === "")) {
+              header = "Column" + index.toString();
+            }
+            else {
+              header = header.replace(/\./g, "").trim(); // Remove all "." and extra spaces
 
-            if (header[0] === "$") {
-              header = header.substring(1); // Remove "$" if in first position
+              if (header[0] === "$") {
+                header = header.substring(1); // Remove "$" if in first position
+              };            
             };
           });
         };

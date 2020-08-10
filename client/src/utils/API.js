@@ -59,19 +59,29 @@ export default {
           return []
         };
 
-        const firstRow = fileData[0]; // Only need first row to get field names and types
+        // First row contains column headers, which will be field names
+        const firstRow = fileData[0]; 
+        let secondRow;
+        // Need second row to get data types; if only one row, just use it again
+        if (fileData.length === 1) { secondRow = fileData[0] } 
+        else { secondRow = fileData[1] };
+        
         const baseModel = [];
         let newField;
 
-        // Find all the field names and field types by looking at first row of data
-        for (let key in firstRow) {
+        // Create pairs of field name and field type to create model for new collection model
+        firstRow.forEach((header, index) => {
           newField = new Object();
-          newField.fieldName = key;
+          newField.fieldName = header;
 
-          if (firstRow[key].match(/^\d{4}\-\d{2}\-\d{2}$/)) {
+          // Make sure cell data is not null or undefined
+          if (!secondRow[index]) {
+            newField.fieldType = "String";
+          }
+          else if (secondRow[index].match(/^\d{4}\-\d{2}\-\d{2}$/)) {
             newField.fieldType = "Date";
           }
-          else if (isNaN(firstRow[key])) {
+          else if (isNaN(secondRow[index])) {
             newField.fieldType = "String";
           }
           else {
@@ -79,7 +89,7 @@ export default {
           };
 
           baseModel.push(newField);
-        };
+        });
 
         const newBase = {
           creatorID: mongoose.Types.ObjectId("5f2f6c59137ead7a45a692ea"),  // TODO: Need ID of current user
@@ -87,11 +97,13 @@ export default {
           model: baseModel
         };
 
+        fileData.shift(); // Remove first item, which is just the headers
+
         // Add entry to Bases collection, then add records to new custom collection
         this.createBase(newBase)
           .then(() => axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData }))
           .then(() => this.getCustom(newBase.baseName, newBase.model))
-          // .then((response) => {return response})
+          // TODO: Just for testing .then((response) => {return response})
           .then((response) => {
             console.log(response);
             return response
