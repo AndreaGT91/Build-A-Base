@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -14,7 +18,20 @@ import "../NavBar2/style.scss";
 import Logo from '../../images/android-chrome-192x192.png';
 
 
-function NavBar2() {
+function NavBar2(props) {
+  const history = useHistory();
+
+  function handleLogoutClick (event) {
+    event.preventDefault();
+    props.logoutUser();
+  };
+
+  useEffect(() => {
+    if (!props.auth.isAuthenticated) {
+      history.push("/Login")
+    }
+  }, [props.auth.isAuthenticated])
+
   return (
     <div>
     
@@ -49,7 +66,10 @@ function NavBar2() {
    
     <Col xs="auto">
       <Link to='/Login'>
-    <Button style={{backgroundColor:"#ff9000"}}>
+    <Button 
+    style={{backgroundColor:"#ff9000"}}
+    onClick={handleLogoutClick}
+    >
          logout
     </Button>
 </Link>
@@ -65,5 +85,17 @@ function NavBar2() {
   );
 };
 
-export default NavBar2;
+NavBar2.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(NavBar2);
 
