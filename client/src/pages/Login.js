@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../actions/authActions";
+import classnames from "classnames";
 import FormGroup from 'react-bootstrap/FormGroup';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form'
@@ -15,12 +19,39 @@ const inlineStyle2 = {
 
 }
 
-const Login = () => {
+const Login = (props) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     errors: {}
   });
+
+  //1st iteration:
+  useEffect(() => {
+    setFormData((prevState) => ({
+      ...prevState,
+      errors: props.errors
+    }));
+  }, [props.errors])
+
+  //Skipping first iteration (exactly like componentWillReceiveProps):
+  const isFirstRun = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    if (props.auth.isAuthenticated) {
+      props.history.push("/Dashboard") // push user to dashboard when they login
+    }
+
+    setFormData((prevState) => ({
+      ...prevState,
+      errors: props.errors
+    }));
+  }, [props.errors]);
 
   function handleChange(event) {
     event.persist();
@@ -38,6 +69,8 @@ const Login = () => {
       email: formData.email,
       password: formData.password,
     };
+
+    props.loginUser(userData);
   };
 
   const { errors } = formData;
@@ -62,7 +95,20 @@ const Login = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="email">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" onChange={handleChange} value={formData.email} />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                onChange={handleChange}
+                value={formData.email}
+                error={errors.email}
+                className={classnames("", {
+                  invalid: errors.email || errors.emailnotfound
+                })}
+              />
+              <span className="red-text">
+                {errors.email}
+                {errors.emailnotfound}
+              </span>
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
     </Form.Text>
@@ -70,7 +116,20 @@ const Login = () => {
 
             <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" onChange={handleChange} value={formData.password} />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={formData.password}
+                error={errors.password}
+                className={classnames("", {
+                  invalid: errors.password || errors.passwordincorrect
+                })}
+              />
+              <span className="red-text">
+                {errors.password}
+                {errors.passwordincorrect}
+              </span>
             </Form.Group>
             {/* <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Keep me signed in" />
@@ -93,4 +152,18 @@ const Login = () => {
   );
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
