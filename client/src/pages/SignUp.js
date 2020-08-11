@@ -73,9 +73,11 @@ const SignUp = (props) => {
       password: formData.password,
       password2: formData.password2
     };
+
+    props.registerUser(newUser, props.history);
   };
 
-  props.registerUser(newUser, props.history);
+  
 
   const { errors } = formData;
 
@@ -193,7 +195,7 @@ const SignUp = (props) => {
   )
 }
 
-Register.propTypes = {
+SignUp.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
