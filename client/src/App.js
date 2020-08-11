@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux"
 import NavBar from "./components/NavBar";
 import SectionOne from "./components/SectionOne";
 import SectionTwo from "./components/SectionTwo";
@@ -13,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import MyDatabase from "./pages/MyDatabase";
 import { Parallax } from "react-parallax";
 import "./App.scss";
+import store from "./store"
 
 
 import FirstImage from "./images/1.png"
@@ -31,25 +33,26 @@ const inlineStyle = {
 function App() {
   return (
     <div className="div1">
-      <Router>
-      <div>
-       
-        <Switch>
-          <Route exact path="/Login"><Login /></Route>
-          <Route exact path="/SignUp"><SignUp /></Route>
-          <Route exact path="/Home"><Home /></Route>
-          <Route exact path="/Dashboard"><Dashboard /></Route>
-          <Route exact path="/MyDatabase"><MyDatabase /></Route>
+      <Provider store={store}>
+        <Router>
+          <div>
 
-          <Route exact path="/*"><Home /></Route>
+            <Switch>
+              <Route exact path="/Login"><Login /></Route>
+              <Route exact path="/SignUp"><SignUp /></Route>
+              <Route exact path="/Home"><Home /></Route>
+              <Route exact path="/Dashboard"><Dashboard /></Route>
+              <Route exact path="/MyDatabase"><MyDatabase /></Route>
 
-        </Switch>
-        </div>
+              <Route exact path="/*"><Home /></Route>
+
+            </Switch>
+          </div>
         </Router>
-       
+      </Provider>
     </div>
-         
-     
+
+
   );
 }
 
