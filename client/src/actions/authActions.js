@@ -24,7 +24,10 @@ export const loginUser = userData => dispatch => {
             // Save to localStorage
             // Set token to localStorage
             const { token } = res.data;
+            const { id } = res.data;
+
             localStorage.setItem("jwtToken", JSON.stringify(token));
+            localStorage.setItem("userID", JSON.stringify(id));
 
             // Set token to Auth header
             setAuthToken(token);
@@ -62,6 +65,7 @@ export const setUserLoading = () => {
 export const logoutUser = () => dispatch => {
     // Remove token from local storage
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("userID")
 
     // Remove auth header for future requests
     setAuthToken(false);

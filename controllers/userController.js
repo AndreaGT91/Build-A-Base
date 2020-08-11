@@ -65,7 +65,7 @@ module.exports = {
               // User matched
               // Create JWT Payload
               const payload = {
-                id: user.id,
+                id: user._id,
                 firstName: user.firstName,
                 lastName: user.lastName
               };
@@ -78,6 +78,7 @@ module.exports = {
                 },
                 (err, token) => {
                   response.json({
+                    id: user._id,
                     success: true,
                     token: "Bearer " + token
                   });
