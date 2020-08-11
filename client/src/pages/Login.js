@@ -40,7 +40,6 @@ const Login = (props) => {
     if (props.auth.isAuthenticated) {
       history.push("/Dashboard") // push user to dashboard when they login
     }
-    console.log(props.auth.isAuthenticated)
   }, [props.auth.isAuthenticated])
 
   function handleChange(event) {
