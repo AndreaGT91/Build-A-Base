@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -32,10 +32,12 @@ const SignUp = (props) => {
     errors: {}
   });
 
+  const history = useHistory();
+
   useEffect(() => {
-    // If logged in and user navigates to Register page, should redirect them to dashboard
+    // If logged in and user navigates to SignUp page, should redirect them to dashboard
     if (props.auth.isAuthenticated) {
-      props.history.push("/Dashboard");
+      history.push("/Dashboard");
     }
   })
 

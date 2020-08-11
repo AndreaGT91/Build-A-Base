@@ -30,6 +30,13 @@ const Login = (props) => {
   const history = useHistory();
 
   useEffect(() => {
+    // If logged in and user navigates to Login page, should redirect them to dashboard
+    if (props.auth.isAuthenticated) {
+      history.push("/Dashboard");
+    }
+  })
+
+  useEffect(() => {
     setFormData((prevState) => ({
       ...prevState,
       errors: props.errors
