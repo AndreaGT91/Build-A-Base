@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form'
@@ -7,7 +10,9 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert'
 import Upload5 from '../images/ac512x512.png';
 import Image from 'react-bootstrap/Image';
-import NavBar from "../components/NavBar";
+import NavBar from '../components/NavBar';
+import { registerUser } from '../actions/authActions';
+import classnames from 'classnames';
 
 
 
@@ -17,7 +22,7 @@ const inlineStyle2 = {
 }
 
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,15 +32,36 @@ const SignUp = () => {
     errors: {}
   });
 
+  //1st iteration:
+  useEffect(() => {
+    setFormData((prevState) => ({
+      ...prevState,
+      errors: props.errors
+    }));
+  }, [props.errors])
+
+  //Skipping first iteration (exactly like componentWillReceiveProps):
+  const isFirstRun = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+    setFormData((prevState) => ({
+      ...prevState,
+      errors: props.errors
+    }));
+  }, [props.errors]);
+
   function handleChange(event) {
-    event.persist(); 
+    event.persist();
 
     setFormData((prevState) => ({
       ...prevState,
       [event.target.id]: event.target.value
     }))
   };
-
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -48,6 +74,8 @@ const SignUp = () => {
       password2: formData.password2
     };
   };
+
+  props.registerUser(newUser, props.history);
 
   const { errors } = formData;
 
@@ -74,33 +102,83 @@ const SignUp = () => {
             <Form.Row>
               <Form.Group as={Col} controlId="firstName">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control type="firstName" placeholder="First Name" onChange={handleChange} value={formData.firstName} />
+                <Form.Control
+                  type="firstName"
+                  placeholder="First Name"
+                  onChange={handleChange}
+                  value={formData.firstName}
+                  error={errors.firstName}
+                  className={classnames("", {
+                    invalid: errors.firstName
+                  })}
+                />
+                <span className="red-text">{errors.firstName}</span>
               </Form.Group>
 
               <Form.Group as={Col} controlId="lastName">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control type="lastName" placeholder="Last Name" onChange={handleChange} value={formData.lastName} />
+                <Form.Control
+                  type="lastName"
+                  placeholder="Last Name"
+                  onChange={handleChange}
+                  value={formData.lastName}
+                  error={errors.lastName}
+                  className={classnames("", {
+                    invalid: errors.lastName
+                  })}
+                />
+                <span className="red-text">{errors.lastName}</span>
               </Form.Group>
             </Form.Row>
 
             <Form.Row>
               <Form.Group as={Col} controlId="email">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" onChange={handleChange} value={formData.email} />
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  onChange={handleChange}
+                  value={formData.email}
+                  error={errors.email}
+                  className={classnames("", {
+                    invalid: errors.email
+                  })}
+                />
+                <span className="red-text">{errors.email}</span>
               </Form.Group>
             </Form.Row>
 
             <Form.Row>
               <Form.Group as={Col} controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" onChange={handleChange} value={formData.password} />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  value={formData.password}
+                  error={errors.password}
+                  className={classnames("", {
+                    invalid: errors.password
+                  })}
+                />
+                <span className="red-text">{errors.password}</span>
               </Form.Group>
             </Form.Row>
 
             <Form.Row>
               <Form.Group as={Col} controlId="password2">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Verify Password" onChange={handleChange} value={formData.password2} />
+                <Form.Control
+                  type="password"
+                  placeholder="Verify Password"
+                  onChange={handleChange}
+                  value={formData.password2}
+                  error={errors.password2}
+                  className={classnames("", {
+                    invalid: errors.password2
+                  })}
+                />
+                <span className="red-text">{errors.password2}</span>
               </Form.Group>
             </Form.Row>
 
@@ -115,5 +193,18 @@ const SignUp = () => {
   )
 }
 
-export default SignUp;
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
 
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(SignUp));
