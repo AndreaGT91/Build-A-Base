@@ -33,6 +33,13 @@ const SignUp = (props) => {
   });
 
   useEffect(() => {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (props.auth.isAuthenticated) {
+      props.history.push("/Dashboard");
+    }
+  })
+
+  useEffect(() => {
     setFormData((prevState) => ({
       ...prevState,
       errors: props.errors
