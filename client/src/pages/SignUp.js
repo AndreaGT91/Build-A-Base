@@ -32,7 +32,6 @@ const SignUp = (props) => {
     errors: {}
   });
 
-  //1st iteration:
   useEffect(() => {
     setFormData((prevState) => ({
       ...prevState,
@@ -40,26 +39,13 @@ const SignUp = (props) => {
     }));
   }, [props.errors])
 
-  //Skipping first iteration (exactly like componentWillReceiveProps):
-  const isFirstRun = useRef(true);
-
-  useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      return;
-    }
-    setFormData((prevState) => ({
-      ...prevState,
-      errors: props.errors
-    }));
-  }, [props.errors]);
-
   function handleChange(event) {
     event.persist();
 
     setFormData((prevState) => ({
       ...prevState,
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
+      errors: {}
     }))
   };
 

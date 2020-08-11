@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
@@ -26,7 +27,8 @@ const Login = (props) => {
     errors: {}
   });
 
-  //1st iteration:
+  const history = useHistory();
+
   useEffect(() => {
     setFormData((prevState) => ({
       ...prevState,
@@ -34,31 +36,20 @@ const Login = (props) => {
     }));
   }, [props.errors])
 
-  //Skipping first iteration (exactly like componentWillReceiveProps):
-  const isFirstRun = useRef(true);
-
   useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      return;
-    }
-
     if (props.auth.isAuthenticated) {
-      props.history.push("/Dashboard") // push user to dashboard when they login
+      history.push("/Dashboard") // push user to dashboard when they login
     }
-
-    setFormData((prevState) => ({
-      ...prevState,
-      errors: props.errors
-    }));
-  }, [props.errors]);
+    console.log(props.auth.isAuthenticated)
+  }, [props.auth.isAuthenticated])
 
   function handleChange(event) {
     event.persist();
 
     setFormData((prevState) => ({
       ...prevState,
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
+      errors: {}
     }))
   };
 

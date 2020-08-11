@@ -5,7 +5,6 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
-    console.log(userData)
     axios
         .post("/api/user", userData)
         .then(res => history.push("/Login")) // re-direct to login on successful register
@@ -19,6 +18,7 @@ export const registerUser = (userData, history) => dispatch => {
 
 // Login - get user token
 export const loginUser = userData => dispatch => {
+    console.log(userData)
     axios
         .post("/api/user/login", userData)
         .then(res => {
