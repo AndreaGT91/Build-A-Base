@@ -59,37 +59,38 @@ export default {
           return []
         };
 
-        // First row contains column headers, which will be field names
+        // Examine first row to get column headers and field types
         const firstRow = fileData[0]; 
-        let secondRow;
-        // Need second row to get data types; if only one row, just use it again
-        if (fileData.length === 1) { secondRow = fileData[0] } 
-        else { secondRow = fileData[1] };
         
         const baseModel = [];
         let newField;
 
         // Create pairs of field name and field type to create model for new collection model
-        firstRow.forEach((header, index) => {
-          newField = new Object();
-          newField.fieldName = header;
+        for (let key in firstRow) {
+          newField = {};
+          newField.fieldName = key;
 
           // Make sure cell data is not null or undefined
-          if (!secondRow[index]) {
+          if (!firstRow[key]) {
             newField.fieldType = "String";
           }
-          else if (secondRow[index].match(/^\d{4}\-\d{2}\-\d{2}$/)) {
-            newField.fieldType = "Date";
+          else if (typeof firstRow[key] === "number") {
+            newField.fieldType = "Number";
           }
-          else if (isNaN(secondRow[index])) {
-            newField.fieldType = "String";
+          else if (typeof firstRow[key] === "string") {
+            if (firstRow[key].substr(0,10).match(/^\d{4}-\d{2}-\d{2}$/)) {
+              newField.fieldType = "Date";
+            }
+            else {
+              newField.fieldType = "String";
+            };
           }
           else {
-            newField.fieldType = "Number";
+            newField.fieldType = "String";
           };
 
           baseModel.push(newField);
-        });
+        };
 
         const newBase = {
           creatorID: mongoose.Types.ObjectId("5f2f6c59137ead7a45a692ea"),  // TODO: Need ID of current user
@@ -97,13 +98,18 @@ export default {
           model: baseModel
         };
 
-        fileData.shift(); // Remove first item, which is just the headers
+        console.log("About to create base");
 
         // Add entry to Bases collection, then add records to new custom collection
         this.createBase(newBase)
-          .then(() => axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData }))
-          .then(() => this.getCustom(newBase.baseName, newBase.model))
-          // TODO: Just for testing .then((response) => {return response})
+          .then(() => {
+            console.log("About to post all new recors");
+            return axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData })
+          })
+          .then(() => {
+            console.log("About to read new collection");
+            return this.getCustom(newBase.baseName, newBase.model);
+          })
           .then((response) => {
             console.log(response);
             return response
@@ -112,6 +118,18 @@ export default {
             console.log("Error creating database: ", error);
             return []
           });
+        // this.createBase(newBase)
+        // .then(() => axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData }))
+        // .then(() => this.getCustom(newBase.baseName, newBase.model))
+        // // TODO: Just for testing .then((response) => {return response})
+        // .then((response) => {
+        //   console.log(response);
+        //   return response
+        // })
+        // .catch(error => {
+        //   console.log("Error creating database: ", error);
+        //   return []
+        // });
       })
       .catch(error => {
         console.log("Error reading file: ", error)
