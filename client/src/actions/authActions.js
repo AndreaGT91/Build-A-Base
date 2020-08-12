@@ -19,7 +19,7 @@ export const registerUser = (userData, history) => dispatch => {
 // Reset password for user
 export const passwordReset = (userData, history) => dispatch => {
     axios
-        .put("/api/user/forgotpassword", userData)
+        .post("/api/user/forgotpassword", userData)
         .then(res => history.push("/Login")) // re-direct to login on successful reset
         .catch(err =>
             dispatch({

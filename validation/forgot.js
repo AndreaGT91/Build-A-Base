@@ -32,7 +32,7 @@ module.exports = function validateForgotInput(data) {
     if (!Validator.equals(data.password, data.password2)) {
         errors.password2 = "Passwords must match";
     };
-    
+
     return {
         errors,
         isValid: isEmpty(errors)

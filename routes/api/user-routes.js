@@ -12,7 +12,7 @@ router.route("/login")
 
 // Matches with "/api/user/forgotpassword"
 router.route("/forgotpassword")
-  .put(userController.forgotPassword);
+  .post(userController.forgotPassword);
 
 // Matches with "/api/user/:email"
 router.route("/:email")

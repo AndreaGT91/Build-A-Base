@@ -108,23 +108,23 @@ module.exports = {
     // Check validation
     if (!isValid) {
       return response.status(400).json(errors);
-    }
+    };
 
     const email = request.body.email;
-    const password = request.body.password;
+    const password = bcrypt.hashSync(request.body.password, bcrypt.genSaltSync(10));
 
     db.Users
-      .find({ email })
+      .findOne({ email })
       .then(user => {
         // Check is user exists
         if (!user) {
           return response.status(404).json({ emailnotfound: "Email not found" });
         } else {
           db.Users
-            .findOneAndUpdate({ email }, password)
+            .findOneAndUpdate({ email }, { password })
             .then(dbModel => response.json(dbModel))
             .catch(error => response.status(422).json(error));
-        }
+        };
       })
       .catch(error => response.status(422).json(error));
   }

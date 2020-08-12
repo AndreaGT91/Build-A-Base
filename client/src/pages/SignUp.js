@@ -72,7 +72,7 @@ const SignUp = (props) => {
     props.registerUser(newUser, props.history);
   };
 
-  
+
 
   const { errors } = formData;
 
