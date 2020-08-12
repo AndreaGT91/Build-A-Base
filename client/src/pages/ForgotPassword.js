@@ -22,10 +22,8 @@ const inlineStyle2 = {
 }
 
 
-const SignUp = (props) => {
+const Forgot = (props) => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
     password2: "",
@@ -35,7 +33,7 @@ const SignUp = (props) => {
   const history = useHistory();
 
   useEffect(() => {
-    // If logged in and user navigates to SignUp page, should redirect them to dashboard
+    // If logged in and user navigates to Forgot page, should redirect them to dashboard
     if (props.auth.isAuthenticated) {
       history.push("/Dashboard");
     }
@@ -58,19 +56,18 @@ const SignUp = (props) => {
     }))
   };
 
-  function handleSubmit(event) {
-    event.preventDefault();
+//   TODO: ROUTING FOR MAKING NEW PASSWORD
+//   function handleSubmit(event) {
+//     event.preventDefault();
 
-    const newUser = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      password: formData.password,
-      password2: formData.password2
-    };
+//     const forgotPassword = {
+//       email: formData.email,
+//       password: formData.password,
+//       password2: formData.password2
+//     };
 
-    props.registerUser(newUser, props.history);
-  };
+//     props.registerUser(newUser, props.history);
+//   };
 
   
 
@@ -90,43 +87,11 @@ const SignUp = (props) => {
         position: "relative",
       }} src={Upload5}></Image>
       <Card style={{ marginTop: "-50%", marginBottom: "10%", width: "30%", marginRight: "auto", marginLeft: "auto" }}>
-        <h1 style={{ textAlign: "center", marginTop: "3%" }}>Fill out information below</h1>
+        <h1 style={{ textAlign: "center", marginTop: "3%" }}>New Password</h1>
         <hr></hr>
         <Card.Body>
-          <Form onSubmit={handleSubmit}>
-
-
-            <Form.Row>
-              <Form.Group as={Col} controlId="firstName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control
-                  type="firstName"
-                  placeholder="First Name"
-                  onChange={handleChange}
-                  value={formData.firstName}
-                  error={errors.firstName}
-                  className={classnames("", {
-                    invalid: errors.firstName
-                  })}
-                />
-                <span className="red-text">{errors.firstName}</span>
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="lastName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  type="lastName"
-                  placeholder="Last Name"
-                  onChange={handleChange}
-                  value={formData.lastName}
-                  error={errors.lastName}
-                  className={classnames("", {
-                    invalid: errors.lastName
-                  })}
-                />
-                <span className="red-text">{errors.lastName}</span>
-              </Form.Group>
-            </Form.Row>
+          <Form >
+          {/* onSubmit={handleSubmit} */}
 
             <Form.Row>
               <Form.Group as={Col} controlId="email">
@@ -181,7 +146,7 @@ const SignUp = (props) => {
 
             <hr></hr>
             <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
-              Create Account
+              Reset Password
   </Button>
           </Form>
         </Card.Body>
@@ -190,8 +155,8 @@ const SignUp = (props) => {
   )
 }
 
-SignUp.propTypes = {
-  registerUser: PropTypes.func.isRequired,
+Forgot.propTypes = {
+//   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -204,4 +169,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { registerUser }
-)(withRouter(SignUp));
+)(withRouter(Forgot));
