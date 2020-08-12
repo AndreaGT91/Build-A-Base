@@ -10,6 +10,10 @@ router.route("/")
 router.route("/login")
   .post(userController.login);
 
+// Matches with "/api/user/forgotpassword"
+router.route("/forgotpassword")
+  .put(userController.forgotPassword);
+
 // Matches with "/api/user/:email"
 router.route("/:email")
   .get(userController.findByEmail);
