@@ -113,12 +113,12 @@ const Login = (props) => {
 
             <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control 
-              type="password" 
-              placeholder="Password" 
-              onChange={handleChange} 
-              value={formData.password} 
-              error={errors.password}
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={formData.password}
+                error={errors.password}
                 className={classnames("", {
                   invalid: errors.password || errors.passwordincorrect
                 })}
