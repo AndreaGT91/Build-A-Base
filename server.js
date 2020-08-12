@@ -15,10 +15,16 @@ app.use(express.json());
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    limit: "50mb",
+    extended: true,
+    parameterLimit: 50000
   })
 );
-app.use(bodyParser.json());
+
+app.use(bodyParser.json({
+  limit: "50mb", 
+  extended: true
+}));
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

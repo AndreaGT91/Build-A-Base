@@ -10,7 +10,9 @@ module.exports = {
   },
   create: function(request, response) {
     // If data is array, insertMany; if object, create one
+    console.log("custom.create: ", request.body);
     if (Array.isArray(request.body.data)) {
+      console.log("custom.create.insertMany");
       db.createCustom(request.params.baseName, request.body.baseModel)
         .insertMany(request.body.data)
         .then(dbModel => response.json(dbModel))

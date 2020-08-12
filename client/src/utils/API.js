@@ -1,8 +1,6 @@
 import axios from "axios";
 import path from "path";
 
-import mongoose from "mongoose"; // TODO: For referencing ObjectID
-
 export default {
 
   // Get user info
@@ -19,35 +17,44 @@ export default {
   },
 
   getBasesByUser: function(id) {
-    return axios.get("api/bases/id");
+    return axios.get("/api/bases/id/" + id);
+  },
+
+  doesBaseExist: function(name) {
+    axios.get("/api/bases/name/" + name)
+      .then(response => { 
+        console.log("response.data: ", response.data);  
+        return (response.data !== []) 
+      })
+      .catch(() => { return false });
   },
 
   createBase: function(baseData) {
-    return axios.post("api/base", baseData);
+    return axios.post("/api/base", baseData);
   },
 
   updateBase: function(baseData) {
-    return axios.put("api/base", baseData);
+    return axios.put("/api/base", baseData);
   },
 
   deleteBase: function(id) {
-    return axios.delete("api/base/" + id);
+    return axios.delete("/api/base/" + id);
   },
 
   getCustom: function(baseName, baseModel) {
-    return axios.patch("api/custom/" + baseName, baseModel); // Has to be patch so we can send model through body.data
+    return axios.patch("/api/custom/" + baseName, baseModel); // Has to be patch so we can send model through body.data
   },
 
   createCustom: function(baseName, baseModel) {
-    return axios.post("api/custom/" + baseName, baseModel);
+    return axios.post("/api/custom/" + baseName, baseModel);
   },
 
   updateCustom: function(baseName, baseModel) {
-    return axios.put("api/custom/" + baseName, baseModel);
+    return axios.put("/api/custom/" + baseName, baseModel);
   },
 
   deleteCustom: function(baseName, id, baseModel) {
-    return axios.patch("api/custom/" + baseName + "/" + id, baseModel); // Has to be patch so we can send model through body.data
+    return axios.patch("/api/custom/" + baseName + "/" + id, baseModel); // Has to be patch so we can send model through body.data
   },
 
   readSpreadsheet: function(fileName) {
@@ -93,20 +100,49 @@ export default {
         };
 
         const newBase = {
-          creatorID: mongoose.Types.ObjectId("5f2f6c59137ead7a45a692ea"),  // TODO: Need ID of current user
+          creatorID: JSON.parse(localStorage.getItem("userID")),
           baseName: path.basename(fileName, path.extname(fileName)),
           model: baseModel
         };
 
+        console.log("About to check if unique");
+        // If collection exists, add number to name; keep going until unique
+        let i = 1;
+        let test = this.doesBaseExist(newBase.baseName);
+        console.log("Test: ", test);
+        // while (this.doesBaseExist(newBase.baseName) !== []) {
+        //   newBase.baseName = newBase.baseName + i.toString();
+        //   i++
+        // };
+
+        console.log("New base name: ", newBase.baseName);
+
         // Add entry to Bases collection, then add records to new custom collection
-        this.createBase(newBase)
-        .then(() => axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData }))
-        .then(() => this.getCustom(newBase.baseName,  { baseModel: newBase.model }))
-        .then((response) => {return response})
-        .catch(error => {
-          console.log("Error creating database: ", error);
-          return []
-        });
+        // this.createBase(newBase)
+        // .then(() => {
+        //   console.log("Created new base, about to post data");
+        //   return axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData })
+        // })
+        // .then(() => {
+        //   console.log("Created new collection, about to read it");
+        //   return this.getCustom(newBase.baseName,  { baseModel: newBase.model })
+        // })
+        // .then((response) => {
+        //   console.log("Read new collection");
+        //   return response
+        // })
+        // .catch(error => {
+        //   console.log("Error creating database: ", error);
+        //   return []
+        // });
+        // this.createBase(newBase)
+        // .then(() => return axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData }))
+        // .then(() => return this.getCustom(newBase.baseName,  { baseModel: newBase.model }))
+        // .then((response) => {return response})
+        // .catch(error => {
+        //   console.log("Error creating database: ", error);
+        //   return []
+        // });
       })
       .catch(error => {
         console.log("Error reading file: ", error)
