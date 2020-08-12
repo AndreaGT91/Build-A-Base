@@ -9,7 +9,6 @@ module.exports = {
       .catch(error => response.status(422).json(error));
   },
   create: function(request, response) {
-    console.log("Controller.create ", request.body);
     // If data is array, insertMany; if object, create one
     if (Array.isArray(request.body.data)) {
       db.createCustom(request.params.baseName, request.body.baseModel)

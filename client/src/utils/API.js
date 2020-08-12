@@ -35,7 +35,7 @@ export default {
   },
 
   getCustom: function(baseName, baseModel) {
-    return axios.get("api/custom/" + baseName, baseModel);
+    return axios.patch("api/custom/" + baseName, baseModel); // Has to be patch so we can send model through body.data
   },
 
   createCustom: function(baseName, baseModel) {
@@ -47,7 +47,7 @@ export default {
   },
 
   deleteCustom: function(baseName, id, baseModel) {
-    return axios.delete("api/custom/" + baseName + "/" + id, baseModel);
+    return axios.patch("api/custom/" + baseName + "/" + id, baseModel); // Has to be patch so we can send model through body.data
   },
 
   readSpreadsheet: function(fileName) {
@@ -98,38 +98,15 @@ export default {
           model: baseModel
         };
 
-        console.log("About to create base");
-
         // Add entry to Bases collection, then add records to new custom collection
         this.createBase(newBase)
-          .then(() => {
-            console.log("About to post all new recors");
-            return axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData })
-          })
-          .then(() => {
-            console.log("About to read new collection");
-            return this.getCustom(newBase.baseName, newBase.model);
-          })
-          .then((response) => {
-            console.log(response);
-            return response
-          })
-          .catch(error => {
-            console.log("Error creating database: ", error);
-            return []
-          });
-        // this.createBase(newBase)
-        // .then(() => axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData }))
-        // .then(() => this.getCustom(newBase.baseName, newBase.model))
-        // // TODO: Just for testing .then((response) => {return response})
-        // .then((response) => {
-        //   console.log(response);
-        //   return response
-        // })
-        // .catch(error => {
-        //   console.log("Error creating database: ", error);
-        //   return []
-        // });
+        .then(() => axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData }))
+        .then(() => this.getCustom(newBase.baseName,  { baseModel: newBase.model }))
+        .then((response) => {return response})
+        .catch(error => {
+          console.log("Error creating database: ", error);
+          return []
+        });
       })
       .catch(error => {
         console.log("Error reading file: ", error)

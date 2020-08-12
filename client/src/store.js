@@ -4,13 +4,14 @@ import rootReducer from "./reducers";
 
 const initialState = {};
 const middleware = [thunk];
+// If user does not have redux dev tools installed, need to use plain compose
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
     rootReducer,
     initialState,
-    compose(
+    composeEnhancers(
         applyMiddleware(...middleware),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 

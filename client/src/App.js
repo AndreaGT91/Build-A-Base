@@ -20,8 +20,6 @@ import "./App.scss";
 import store from "./store"
 import PrivateRoute from "./components/private-route/PrivateRoute";
 
-import API from "./utils/API";  // TODO: Just for testing
-
 import FirstImage from "./images/1.png"
 
 const image2 = "https://media-public.canva.com/MAC_ThKmzeg/1/thumbnail_large-1.jpg"
@@ -59,10 +57,6 @@ if (localStorage.jwtToken) {
 }
 
 function App() {
-  // TODO: Just for testing
-  API.readSpreadsheet("/Users/andreabentley/Documents/github/Build-A-Base/sample-data/1010-Sample-Information.xlsx");
-  // API.readSpreadsheet("/Users/andreabentley/Documents/github/Build-A-Base/sample-data/Financial Sample.xlsx");
-  
   return (
     <div className="div1">
       <Provider store={store}>
