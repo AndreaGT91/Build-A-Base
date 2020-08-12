@@ -12,6 +12,7 @@ import SectionFour from "./components/SectionFour";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Forgot from "./pages/ForgotPassword"
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import MyDatabase from "./pages/MyDatabase";
@@ -71,6 +72,7 @@ function App() {
             <Switch>
               <Route exact path="/Login"><Login /></Route>
               <Route exact path="/SignUp"><SignUp /></Route>
+              <Route exact path="/forgotpassword"><Forgot /></Route>
               <Route exact path="/Home"><Home /></Route>
               <PrivateRoute exact path="/Dashboard" component={Dashboard} />
               <Route exact path="/MyDatabase"><MyDatabase /></Route>

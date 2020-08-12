@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -72,7 +72,7 @@ const SignUp = (props) => {
     props.registerUser(newUser, props.history);
   };
 
-  
+
 
   const { errors } = formData;
 

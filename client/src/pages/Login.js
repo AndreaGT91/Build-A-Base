@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -113,12 +113,12 @@ const Login = (props) => {
 
             <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control 
-              type="password" 
-              placeholder="Password" 
-              onChange={handleChange} 
-              value={formData.password} 
-              error={errors.password}
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={formData.password}
+                error={errors.password}
                 className={classnames("", {
                   invalid: errors.password || errors.passwordincorrect
                 })}
@@ -128,9 +128,7 @@ const Login = (props) => {
                 {errors.passwordincorrect}
               </span>
             </Form.Group>
-            {/* <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Keep me signed in" />
-            </Form.Group> */}
+            <a href="/forgotpassword">Forgot Password?</a>
             <hr></hr>
             <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
               Submit
