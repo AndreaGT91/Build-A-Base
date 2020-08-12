@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const SALT_WORK_FACTOR = 10;
 
 const userSchema = new Schema({
-  email: { 
+  email: {
     type: String,
     trim: true,
     lowercase: true,
@@ -23,7 +23,7 @@ userSchema.virtual("fullName").get(function () {
 });
 
 // TODO: Pre and post save() hooks are not executed on update(), findOneAndUpdate(), etc. 
-userSchema.pre("save", function(next) {
+userSchema.pre("save", function (next) {
   if (!this.isModified("password")) {
     return next();
   };
@@ -32,7 +32,7 @@ userSchema.pre("save", function(next) {
 });
 
 // ********Had trouble making this work in controller; added compare logic in controller and working now, may not need this code************
-userSchema.methods.comparePassword = function(plaintext, callback) {
+userSchema.methods.comparePassword = function (plaintext, callback) {
   return callback(null, bcrypt.compareSync(plaintext, this.password));
 };
 
