@@ -1,4 +1,5 @@
 module.exports = {
   Users: require("./user"),
-  Bases: require("./base")
+  Bases: require("./base"),
+  createCustom: require("./custom")
 };

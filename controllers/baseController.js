@@ -8,6 +8,14 @@ module.exports = {
       .then(dbModel => response.json(dbModel))
       .catch(error => response.status(422).json(error));
   },
+  findByName: function(request, response) {
+    db.Bases
+      .find({ baseName: request.params.name })
+      .then(dbModel => {
+        response.json(dbModel)
+      })
+      .catch(error => response.status(422).json(error));
+  },
   create: function(request, response) {
     db.Bases
       .create(request.body)
@@ -28,3 +36,10 @@ module.exports = {
       .catch(error => response.status(422).json(error));
   }
 };
+
+// mongoose.connection.db.listCollections({name: 'mycollectionname'})
+//     .next(function(err, collinfo) {
+//         if (collinfo) {
+//             // The collection exists
+//         }
+//     });

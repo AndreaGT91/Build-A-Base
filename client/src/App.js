@@ -21,7 +21,6 @@ import "./App.scss";
 import store from "./store"
 import PrivateRoute from "./components/private-route/PrivateRoute";
 
-
 import FirstImage from "./images/1.png"
 
 const image2 = "https://media-public.canva.com/MAC_ThKmzeg/1/thumbnail_large-1.jpg"
@@ -35,10 +34,11 @@ const inlineStyle = {
   padding: '20px',
 }
 
+const token = JSON.parse(localStorage.getItem("jwtToken"));
+
 // Check for token to keep user logged in
-if (localStorage.jwtToken) {
+if (token) {
   // Set auth token header auth
-  const token = JSON.parse(localStorage.jwtToken);
   setAuthToken(token);
 
   // Decode token and get user info and exp
