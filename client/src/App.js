@@ -21,8 +21,6 @@ import "./App.scss";
 import store from "./store"
 import PrivateRoute from "./components/private-route/PrivateRoute";
 
-import API from "./utils/API";
-
 import FirstImage from "./images/1.png"
 
 const image2 = "https://media-public.canva.com/MAC_ThKmzeg/1/thumbnail_large-1.jpg"
@@ -59,8 +57,6 @@ if (token) {
     window.location.href = "./Login";
   }
 }
-
-API.readSpreadsheet("/Users/andreabentley/Documents/github/Build-A-Base/sample-data/Financial-Sample.xlsx");
 
 function App() {
   return (

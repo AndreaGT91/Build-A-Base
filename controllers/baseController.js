@@ -11,7 +11,9 @@ module.exports = {
   findByName: function(request, response) {
     db.Bases
       .find({ baseName: request.params.name })
-      .then(dbModel => response.json(dbModel))
+      .then(dbModel => {
+        response.json(dbModel)
+      })
       .catch(error => response.status(422).json(error));
   },
   create: function(request, response) {
