@@ -36,25 +36,50 @@ export default {
     return axios.delete("/api/base/" + id);
   },
 
-  getCustom: function(baseName, baseModel) {
-    return axios.patch("/api/custom/" + baseName, baseModel); // Has to be patch so we can send model through body.data
+  getCustom: async function(baseName) {
+    await this.getBaseByName(baseName)
+    .then( async response => {
+      if (response.data) {
+        const res = await axios.patch("/api/custom/" + baseName, response.data.model) // Has to be patch so we can send model through body.data
+        // console.log("res.data: ", res.data);
+        return res
+      }
+      else { return [] }
+    })
+    // const response = await this.getBaseByName(baseName)
+    // if (response.data) {
+    //   const res = await axios.patch("/api/custom/" + baseName, response.data.model) // Has to be patch so we can send model through body.data
+    //   console.log("res.data: ", res.data);
+    //   return res
+    // }
+    // else { return response }
   },
 
-  createCustom: function(baseName, baseModel) {
-    return axios.post("/api/custom/" + baseName, baseModel);
+  createCustom: async function(baseName, baseData) {
+    const response = await this.getBaseByName(baseName);
+    if (!response.data) { return response }
+    return axios.post("/api/custom/" + baseName, { baseModel: response.data.model, data: baseData });
   },
 
-  updateCustom: function(baseName, baseModel) {
-    return axios.put("/api/custom/" + baseName, baseModel);
+  updateCustom: async function(baseName, baseData) {
+    const response = await this.getBaseByName(baseName);
+    if (!response.data) { return response }
+    return axios.put("/api/custom/" + baseName, { baseModel: response.data.model, data: baseData });
   },
 
-  deleteCustom: function(baseName, id, baseModel) {
-    return axios.patch("/api/custom/" + baseName + "/" + id, baseModel); // Has to be patch so we can send model through body.data
+  deleteCustom: async function(baseName, id) {
+    const response = await this.getBaseByName(baseName);
+    if (!response.data) { return response }
+    return axios.patch("/api/custom/" + baseName + "/" + id, response.data.model); // Has to be patch so we can send model through body.data
   },
 
   getUniqueBaseName: async function(baseName, counter) {
     let newBaseName = baseName;
-    const response = await this.getBaseByName(newBaseName)
+    const response = await this.getBaseByName(newBaseName);
+    if (response.data) { 
+      counter++;
+      newBaseName = newBaseName + (counter).toString(); 
+    };
     // Getting error that .splice is not a function
     // if (response.data.length > 0) {
     //   if (counter > 0) {
@@ -67,12 +92,13 @@ export default {
     return newBaseName;
   },
 
+  // Reads spreadsheet in fileName, returns new collection (base) name
   readSpreadsheet: function(fileName) {
     axios.post("/api/xlsx", { filename: fileName })
       .then( async response => { 
         const fileData = response.data;
         if (fileData.length === 0) {
-          return []
+          return ""
         };
 
         // Examine first row to get column headers and field types
@@ -108,7 +134,29 @@ export default {
           baseModel.push(newField);
         };
 
-        let newBaseName = path.basename(fileName, path.extname(fileName));
+        // Start with file name, remove anything but letters and numbers, make camel case
+        // Can't start with a number - add "n" to front if it does
+        let fn = path.basename(fileName, path.extname(fileName));
+        let newBaseName = "";
+        let needCap = false;
+        for (let i=0; i<fn.length; i++) {
+          if (/[\w]|_/g.test(fn[i])) {
+            if ((newBaseName.length === 0) && (/\d/g.test(fn[i]))) {
+              newBaseName = "n";
+            };
+
+            if (needCap) {
+              newBaseName = newBaseName + fn[i].toUpperCase();
+            }
+            else {
+              newBaseName = newBaseName + fn[i].toLowerCase();
+            };
+            needCap = false;
+          }
+          else {
+            needCap = true;
+          };
+        };
 
         newBaseName = await this.getUniqueBaseName(newBaseName, 0)
 
@@ -121,16 +169,15 @@ export default {
         // Add entry to Bases collection, then add records to new custom collection
         this.createBase(newBase)
         .then(() => { return axios.post("/api/custom/" + newBase.baseName, { baseModel: newBase.model, data: fileData })})
-        .then(() => { return this.getCustom(newBase.baseName,  { baseModel: newBase.model })})
-        .then((response) => { return response })
+        .then(() => { return newBase.baseName })
         .catch(error => {
           console.log("Error creating database: ", error);
-          return []
+          return ""
         });
       })
       .catch(error => {
         console.log("Error reading file: ", error)
-        return []
+        return ""
       });
   }
 };

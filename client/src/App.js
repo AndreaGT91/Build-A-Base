@@ -23,6 +23,8 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 
 import FirstImage from "./images/1.png"
 
+import BaseTable from "./pages/BaseTable";
+
 const image2 = "https://media-public.canva.com/MAC_ThKmzeg/1/thumbnail_large-1.jpg"
 const image3 = "https://media-public.canva.com/MADCCLp1-lc/1/thumbnail_large-1.jpg"
 
@@ -56,7 +58,7 @@ if (token) {
     // Redirect to login
     window.location.href = "./Login";
   }
-}
+};
 
 function App() {
   return (
@@ -66,6 +68,7 @@ function App() {
           <div>
 
             <Switch>
+              <Route exact path="/testing"><BaseTable>n1010SampleInformation</BaseTable></Route>
               <Route exact path="/Login"><Login /></Route>
               <Route exact path="/SignUp"><SignUp /></Route>
               <Route exact path="/forgotpassword"><Forgot /></Route>
@@ -73,7 +76,7 @@ function App() {
               <PrivateRoute exact path="/Dashboard" component={Dashboard} />
               <Route exact path="/MyDatabase"><MyDatabase /></Route>
 
-              <Route exact path="/*"><Home /></Route>
+              <Route path="/*"><Home /></Route>
 
             </Switch>
           </div>

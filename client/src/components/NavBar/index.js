@@ -42,9 +42,6 @@ height: "73px",
    
     <Col xs="auto">
       <Link to='/Dashboard'>
-    <Button>
-         login
-    </Button>
 </Link>
       
     </Col>
