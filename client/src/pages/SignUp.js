@@ -3,7 +3,6 @@ import { withRouter, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Col from 'react-bootstrap/Col';
-<<<<<<< HEAD:client/src/pages/SignUp/SignUp.js
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -13,76 +12,15 @@ import Upload5 from '../../images/ac512x512.png';
 import Image from 'react-bootstrap/Image';
 import NavBar from "../../components/NavBar";
 
-=======
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-// import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Card from 'react-bootstrap/Card';
-import Upload5 from '../images/ac512x512.png';
-import Image from 'react-bootstrap/Image';
-import NavBar from '../components/NavBar';
-import { registerUser } from '../actions/authActions';
-import classnames from 'classnames';
->>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43:client/src/pages/SignUp.js
 
 const inlineStyle2 = {
 
 };
 
-<<<<<<< HEAD:client/src/pages/SignUp/SignUp.js
 const inlineStyle2 = {
     
   background: 'linear-gradient(180deg, #e4f5fc 10%, white 50%, white)'
 }
-=======
-const SignUp = (props) => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    password2: "",
-    errors: {}
-  });
-
-  const history = useHistory();
-
-  useEffect(() => {
-    // If logged in and user navigates to SignUp page, should redirect them to dashboard
-    if (props.auth.isAuthenticated) {
-      // alert("Already logged in."); 
-      history.push("/Dashboard");
-    }
-  })
-
-  useEffect(() => {
-    setFormData((prevState) => ({
-      ...prevState,
-      errors: props.errors
-    }));
-  }, [props.errors]);
-
-  function handleChange(event) {
-    event.persist();
-
-    setFormData((prevState) => ({
-      ...prevState,
-      [event.target.id]: event.target.value,
-      errors: {}
-    }))
-  };
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const newUser = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      password: formData.password,
-      password2: formData.password2
-    };
->>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43:client/src/pages/SignUp.js
 
     props.registerUser(newUser, props.history);
   };
@@ -191,7 +129,6 @@ const SignUp = (props) => {
               </Form.Group>
             </Form.Row>
 
-<<<<<<< HEAD:client/src/pages/SignUp/SignUp.js
 
 
 const SignUp = () =>{
@@ -258,23 +195,6 @@ position: "relative",
 
 </div>
     )
-=======
-            <hr></hr>
-            {/* <ButtonGroup aria-label="Login button group" style={{ textAlign: "center" }}> */}
-              <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
-              Create Account
-              </Button>
-              {/* {' '}
-              <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="reset">
-                Cancel
-              </Button>
-            </ButtonGroup> */}
-          </Form>
-        </Card.Body>
-      </Card>
-    </div>
-  )
->>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43:client/src/pages/SignUp.js
 }
 
 SignUp.propTypes = {

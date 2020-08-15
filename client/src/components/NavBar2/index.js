@@ -34,54 +34,6 @@ function NavBar2(props) {
   }, [props.auth.isAuthenticated]);
 
   return (
-<<<<<<< HEAD
-    <div>
-    
-    <Navbar style={{height:'10%'}} className="navBarClass" fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand href="/Home">
-  <Image style={{ 
-      width: "87px",
-      height: "73px",
-    }}src={ Logo } fluid /> 
-  </Navbar.Brand>
-  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-      <NavDropdown title="New Base" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="/MyDatabase">Import a spreadsheet</NavDropdown.Item>
-        <NavDropdown.Item href="/MyDatabase">Start from scratch</NavDropdown.Item>
-        <NavDropdown.Item href="/MyDatabase">Choose a template</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-      </NavDropdown>
-    </Nav>
-    <Nav>
-      <Nav.Link href="#deets">More deets</Nav.Link>
-      <Nav.Link eventKey={2} href="#memes">
-        Dank memes
-      </Nav.Link>
-    </Nav>
-  <Form>
-  <Form.Row className="align-items-center">
-   
-    <Col xs="auto">
-      <Link to='/Login'>
-    <Button style={{backgroundColor:"#ff9000"}}>
-         logout
-    </Button>
-</Link>
-      
-    </Col>
-  </Form.Row>
-</Form>
-  </Navbar.Collapse>
-</Navbar>
-    </div>
-    
-  
-=======
     <>
       <Navbar className="navBarClass" fixed="top" expand="lg" bg="dark" variant="dark">
       {/* <Navbar style={{ height: '10%' }} className="navBarClass" fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark"> */}
@@ -112,7 +64,6 @@ function NavBar2(props) {
         {/* </Navbar.Collapse> */}
       </Navbar>
     </>
->>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43
   );
 };
 
