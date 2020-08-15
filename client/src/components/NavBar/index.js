@@ -6,6 +6,10 @@ import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 
+<<<<<<< HEAD
+import Dashboard from "../../pages/Dashboard/Dashboard";
+=======
+>>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43
 import "../NavBar/style.scss";
 
 import Logo from '../../images/android-chrome-192x192.png';
@@ -14,7 +18,7 @@ import Logo from '../../images/android-chrome-192x192.png';
 function NavBar() {
   return (
     <div>
-    <Navbar className="navBarClass" sticky="top" fixed="top"  variant="light"  style={{ marginTop: "0px" }}>
+    <Navbar collapseOnSelect expand="lg" className="navBarClass" sticky="top" fixed="top"  variant="light"  >
       <Navbar.Brand href="/">
       <Image style={{ /* Rectangle 6 */
 
@@ -25,7 +29,9 @@ height: "73px",
 // background: { Logo }
 }}src={ Logo } fluid />
 </Navbar.Brand>
-      <Nav className="mr-auto">
+<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+<Navbar.Collapse id="responsive-navbar-nav">
+      <Nav className="ml-auto">
         <Nav.Item>
           <Nav.Link href="/SignUp">SignUp</Nav.Link>
         </Nav.Item>
@@ -37,13 +43,18 @@ height: "73px",
       <Form>
   <Form.Row className="align-items-center">
    
+<<<<<<< HEAD
+  
+=======
     <Col xs="auto">
       <Link to='/Dashboard'>
 </Link>
       
     </Col>
+>>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43
   </Form.Row>
 </Form>
+</Navbar.Collapse>
     </Navbar>
     </div>
     
