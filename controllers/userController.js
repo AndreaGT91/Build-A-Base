@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 
 // Load input validation
 const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/login");
+const validateLoginInput = require("../validation/Login");
 const validateForgotInput = require("../validation/forgot");
 
 // Defining methods for the Users Controller

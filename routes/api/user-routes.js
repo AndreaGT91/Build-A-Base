@@ -6,8 +6,8 @@ router.route("/")
   .post(userController.create)
   .put(userController.update);
 
-// Matches with "/api/user/login"
-router.route("/login")
+// Matches with "/api/user/Login"
+router.route("/Login")
   .post(userController.login);
 
 // Matches with "/api/user/forgotpassword"

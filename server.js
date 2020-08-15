@@ -35,6 +35,7 @@ require("./config/passport")(passport);
 app.use(routes);
 
 // Connect to the Mongo DB
+mongoose.pluralize(null);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/build-a-base",
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
 );
