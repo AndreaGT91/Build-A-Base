@@ -8,7 +8,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
-import Dashboard from "../../pages/Dashboard";
+import Dashboard from "../../pages/Dashboard/Dashboard";
 import "../NavBar/style.scss";
 
 import Logo from '../../images/android-chrome-192x192.png';
@@ -17,7 +17,7 @@ import Logo from '../../images/android-chrome-192x192.png';
 function NavBar() {
   return (
     <div>
-    <Navbar className="navBarClass" sticky="top" fixed="top"  variant="light"  style={{ marginTop: "0px" }}>
+    <Navbar collapseOnSelect expand="lg" className="navBarClass" sticky="top" fixed="top"  variant="light"  >
       <Navbar.Brand href="/">
       <Image style={{ /* Rectangle 6 */
 
@@ -28,7 +28,9 @@ height: "73px",
 // background: { Logo }
 }}src={ Logo } fluid />
 </Navbar.Brand>
-      <Nav className="mr-auto">
+<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+<Navbar.Collapse id="responsive-navbar-nav">
+      <Nav className="ml-auto">
         <Nav.Item>
           <Nav.Link href="/signUp">SignUp</Nav.Link>
         </Nav.Item>
@@ -40,16 +42,10 @@ height: "73px",
       <Form>
   <Form.Row className="align-items-center">
    
-    <Col xs="auto">
-      <Link to='/Dashboard'>
-    <Button>
-         login
-    </Button>
-</Link>
-      
-    </Col>
+  
   </Form.Row>
 </Form>
+</Navbar.Collapse>
     </Navbar>
     </div>
     

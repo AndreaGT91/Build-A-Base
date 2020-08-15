@@ -6,9 +6,9 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert'
 import Image from 'react-bootstrap/Image';
-import NavBar from "../components/NavBar";
+import NavBar from "../../components/NavBar";
 
-import Upload5 from '../images/ac512x512.png';
+import Upload5 from '../../images/ac512x512.png';
 
 const inlineStyle2 = {
     
@@ -20,8 +20,8 @@ const Login = () => {
 <div style={inlineStyle2}>
 <NavBar/>
 <Image style={{ /* Rectangle 6 */
-width: "900px",
-height: "900px",
+width: "80%",
+height: "80%",
 opacity: "0.3",
 marginTop: "1%",
 

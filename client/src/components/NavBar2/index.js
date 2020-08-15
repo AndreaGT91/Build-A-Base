@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
-import Dashboard from "../../pages/Dashboard";
+import Dashboard from "../../pages/Dashboard/Dashboard";
 import "../NavBar2/style.scss";
 
 import Logo from '../../images/android-chrome-192x192.png';
@@ -31,9 +31,9 @@ function NavBar2() {
       <Nav.Link href="#features">Features</Nav.Link>
       <Nav.Link href="#pricing">Pricing</Nav.Link>
       <NavDropdown title="New Base" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Import a spreadsheet</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Start from scratch</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Choose a template</NavDropdown.Item>
+        <NavDropdown.Item href="/MyDatabase">Import a spreadsheet</NavDropdown.Item>
+        <NavDropdown.Item href="/MyDatabase">Start from scratch</NavDropdown.Item>
+        <NavDropdown.Item href="/MyDatabase">Choose a template</NavDropdown.Item>
         <NavDropdown.Divider />
         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
       </NavDropdown>

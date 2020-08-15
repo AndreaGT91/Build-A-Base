@@ -3,8 +3,12 @@ nav.navbar.navbar-default {
   }
 
   .navBarClass{
-      background-color: transparent;
+  background-color: #e4f5fc;
   box-shadow: none;
   height: 100px;
       
+  }
+
+  button.navbar-toggler{
+    background-color:transparent;
   }
