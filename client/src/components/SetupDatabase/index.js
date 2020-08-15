@@ -11,7 +11,7 @@ import Upload3 from '../../images/csvIcon.png';
 import Upload4 from '../../images/excelIcon.png';
 import AddIcon from '../../images/addIcon.png';
 import CalenderIcon from '../../images/calenderIcon.png';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination'
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import NewDbModal from "../NewDbModal";

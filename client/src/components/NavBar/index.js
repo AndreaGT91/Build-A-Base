@@ -3,12 +3,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import Link from 'react-router-dom/Link';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 
+<<<<<<< HEAD
 import Dashboard from "../../pages/Dashboard/Dashboard";
+=======
+>>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43
 import "../NavBar/style.scss";
 
 import Logo from '../../images/android-chrome-192x192.png';
@@ -32,17 +33,25 @@ height: "73px",
 <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="ml-auto">
         <Nav.Item>
-          <Nav.Link href="/signUp">SignUp</Nav.Link>
+          <Nav.Link href="/SignUp">SignUp</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link href="/Login">Login</Nav.Link>
         </Nav.Item>
       </Nav>
 
       <Form>
   <Form.Row className="align-items-center">
    
+<<<<<<< HEAD
   
+=======
+    <Col xs="auto">
+      <Link to='/Dashboard'>
+</Link>
+      
+    </Col>
+>>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43
   </Form.Row>
 </Form>
 </Navbar.Collapse>

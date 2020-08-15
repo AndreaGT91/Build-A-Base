@@ -66,7 +66,7 @@ const DatabaseTemplates = ()=>{
 
   {/* <Card className="dbCards">
   
-    <Card.Img variant="top" href="/home" src={CalenderIcon}/>
+    <Card.Img variant="top" href="/Home" src={CalenderIcon}/>
     <Card.Link  className="stretched-link" href="#">Card Link</Card.Link>
   </Card> */}
   {/* <Card className="dbCards">

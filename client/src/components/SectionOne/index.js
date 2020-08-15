@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useEffect } from "react";
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
@@ -6,6 +7,12 @@
 // import InputGroup from 'react-bootstrap/InputGroup';
 // import FormControl from 'react-bootstrap/FormControl';
 // import Button from 'react-bootstrap/Button';
+=======
+import React, { useEffect } from "react";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+>>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43
 import Image from 'react-bootstrap/Image';
 import OrangeCircle from '../../images/orangeprogressncircle.png';
 import WhiteChart from '../../images/whitechart.png';
