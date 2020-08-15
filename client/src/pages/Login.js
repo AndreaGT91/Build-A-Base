@@ -4,12 +4,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
-import FormGroup from 'react-bootstrap/FormGroup';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+// import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
-import Alert from 'react-bootstrap/Alert'
 import Image from 'react-bootstrap/Image';
 import NavBar from "../components/NavBar";
 
@@ -32,6 +30,7 @@ const Login = (props) => {
   useEffect(() => {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (props.auth.isAuthenticated) {
+      // alert("Already logged in."); 
       history.push("/Dashboard");
     }
   })
@@ -108,7 +107,7 @@ const Login = (props) => {
               </span>
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
-    </Form.Text>
+              </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="password">
@@ -130,9 +129,15 @@ const Login = (props) => {
             </Form.Group>
             <a href="/forgotpassword">Forgot Password?</a>
             <hr></hr>
-            <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
-              Submit
-  </Button>
+            {/* <ButtonGroup aria-label="Login button group"> */}
+              <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
+                Login
+              </Button>
+              {/* {' '}
+              <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="reset">
+                Cancel
+              </Button>
+            </ButtonGroup> */}
           </Form>
           {/* <Col xs="auto">
       <Button style={{  marginLeft: "auto", marginRight: "auto", display:"block"  }} type="submit" className="mb-2">

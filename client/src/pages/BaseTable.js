@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Table, Form, Col, Button } from 'react-bootstrap';
-import NavBar from '../components/NavBar';
+import NavBar2 from '../components/NavBar2';
+// import Image from 'react-bootstrap/Image';
+
+// import Upload5 from '../images/ac512x512.png';
+
 // import API from '../utils/API';
 import './BaseTable.css';
 import test from "./test.json";
@@ -11,7 +15,6 @@ const BaseTable = (props) => {
   const [updateView, setUpdateView] = useState(0);
 
   // Which filter is selected
-  const filterElements = "filterElements";
   const noFilter = "No filter";
   const [filterSelect, setFilterSelect] = useState(noFilter);
   const [filterData, setFilterData] = useState("");
@@ -81,9 +84,19 @@ const BaseTable = (props) => {
 
   return (
     <>
-      <NavBar />
-      <Container className="conatiner" style={{ textAlign: "center" }}>
-        <h1 className="h1">{props.children}</h1>
+      <NavBar2 />
+      {/* <Image style={{ 
+        width: "900px",
+        height: "900px",
+        opacity: "0.3",
+        marginTop: "1%",
+
+        marginLeft: "15%",
+        position: "relative",
+      }} src={Upload5}></Image> */}
+      <Container className="container">
+        {/* <h1 className="h1">{props.children}</h1> */}
+        <h1 className="h1">n1010SampleInformation</h1>
         <span style={{ display: "none" }}>{updateView}</span>
         <Form className="form">
         {/* <Form style={{ display: "inline-block", marginLeft: "auto", marginRight: "auto", marginTop: "20px", marginBottom: "50px", width: "70%", 
@@ -105,7 +118,8 @@ const BaseTable = (props) => {
                 placeholder="Enter value to filter on" />
             </Form.Group>
           </Form.Row>
-          <Button variant="primary" type="submit" className="float-right" onClick={handleFormSubmit}>Filter</Button>
+          <Button variant="primary" type="submit" className="float-right" style={{ backgroundColor: "#ff9000" }}
+            onClick={handleFormSubmit}>Filter</Button>
         </Form>
         <p style={{ textAlign: "center" }}>Click on column heading to sort by that column</p>
         {dataList.length ? (

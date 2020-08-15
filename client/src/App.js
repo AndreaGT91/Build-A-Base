@@ -4,37 +4,16 @@ import { Provider } from "react-redux"
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
-import NavBar from "./components/NavBar";
-import SectionOne from "./components/SectionOne";
-import SectionTwo from "./components/SectionTwo";
-import SectionThree from "./components/SectionThree";
-import SectionFour from "./components/SectionFour";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Forgot from "./pages/ForgotPassword"
+import BaseTable from "./pages/BaseTable";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
-import MyDatabase from "./pages/MyDatabase";
-import { Parallax } from "react-parallax";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.scss";
 import store from "./store"
 import PrivateRoute from "./components/private-route/PrivateRoute";
-
-import FirstImage from "./images/1.png"
-
-import BaseTable from "./pages/BaseTable";
-
-const image2 = "https://media-public.canva.com/MAC_ThKmzeg/1/thumbnail_large-1.jpg"
-const image3 = "https://media-public.canva.com/MADCCLp1-lc/1/thumbnail_large-1.jpg"
-
-const inlineStyle = {
-  background: '#fff',
-  left: '50%',
-  top: '50%',
-  position: 'absolute',
-  padding: '20px',
-}
 
 const token = JSON.parse(localStorage.getItem("jwtToken"));
 
@@ -65,26 +44,20 @@ function App() {
     <div className="div1">
       <Provider store={store}>
         <Router>
-          <div>
-
+          <>
             <Switch>
-              <Route exact path="/testing"><BaseTable>n1010SampleInformation</BaseTable></Route>
               <Route exact path="/Login"><Login /></Route>
               <Route exact path="/SignUp"><SignUp /></Route>
               <Route exact path="/forgotpassword"><Forgot /></Route>
               <Route exact path="/Home"><Home /></Route>
               <PrivateRoute exact path="/Dashboard" component={Dashboard} />
-              <Route exact path="/MyDatabase"><MyDatabase /></Route>
-
+              <PrivateRoute path="/BaseTable" component={BaseTable} />
               <Route path="/*"><Home /></Route>
-
             </Switch>
-          </div>
+          </>
         </Router>
       </Provider>
     </div>
-
-
   );
 }
 

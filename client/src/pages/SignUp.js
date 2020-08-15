@@ -2,25 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FormGroup from 'react-bootstrap/FormGroup';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+// import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
-import Alert from 'react-bootstrap/Alert'
 import Upload5 from '../images/ac512x512.png';
 import Image from 'react-bootstrap/Image';
 import NavBar from '../components/NavBar';
 import { registerUser } from '../actions/authActions';
 import classnames from 'classnames';
 
-
-
 const inlineStyle2 = {
 
-
-}
-
+};
 
 const SignUp = (props) => {
   const [formData, setFormData] = useState({
@@ -37,6 +32,7 @@ const SignUp = (props) => {
   useEffect(() => {
     // If logged in and user navigates to SignUp page, should redirect them to dashboard
     if (props.auth.isAuthenticated) {
+      // alert("Already logged in."); 
       history.push("/Dashboard");
     }
   })
@@ -46,7 +42,7 @@ const SignUp = (props) => {
       ...prevState,
       errors: props.errors
     }));
-  }, [props.errors])
+  }, [props.errors]);
 
   function handleChange(event) {
     event.persist();
@@ -72,10 +68,7 @@ const SignUp = (props) => {
     props.registerUser(newUser, props.history);
   };
 
-
-
   const { errors } = formData;
-
 
   return (
     <div style={inlineStyle2}>
@@ -180,9 +173,15 @@ const SignUp = (props) => {
             </Form.Row>
 
             <hr></hr>
-            <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
+            {/* <ButtonGroup aria-label="Login button group" style={{ textAlign: "center" }}> */}
+              <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
               Create Account
-  </Button>
+              </Button>
+              {/* {' '}
+              <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="reset">
+                Cancel
+              </Button>
+            </ButtonGroup> */}
           </Form>
         </Card.Body>
       </Card>
