@@ -1,6 +1,10 @@
 {
   "name": "build-a-base",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "description": "Allows non-technical users to create databases",
   "main": "server.js",
   "scripts": {
