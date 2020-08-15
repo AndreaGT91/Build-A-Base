@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "14.8.0"
-  }
+  },
   "description": "Allows non-technical users to create databases",
   "main": "server.js",
   "scripts": {
