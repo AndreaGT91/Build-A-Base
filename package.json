@@ -5,12 +5,12 @@
   "private": true,
   "homepage": "https://github.com/AndreaGT91/Build-A-Base/#readme",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/AndreaGT91/Build-A-Base.git"
+    "type": "git",
+    "url": "https://github.com/AndreaGT91/Build-A-Base.git"
   },
-  "engines": { 
+  "engines": {
     "node": ">14.0.0",
-    "npm": ">6.0.0" 
+    "npm": ">6.0.0"
   },
   "main": "server.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "author": "KAIR Team",
   "contributors": [
-    { 
+    {
       "name": "Katherine Jones",
       "url": "https://thedevkat.com/"
     },

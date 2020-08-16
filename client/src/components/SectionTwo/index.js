@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Upload3 from '../../images/688511-637286317940096204-16x9.jpg';
-import Upload4 from '../../images/excelIcon.png';
+// import Upload4 from '../../images/excelIcon.png';
 import Aos from "aos";
 import "aos/dist/aos.css";
 
