@@ -1,18 +1,7 @@
-<<<<<<< HEAD
-// import React, { useEffect } from "react";
-// import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Form from 'react-bootstrap/Form';
-// import Col from 'react-bootstrap/Col';
-// import InputGroup from 'react-bootstrap/InputGroup';
-// import FormControl from 'react-bootstrap/FormControl';
-// import Button from 'react-bootstrap/Button';
-=======
 import React, { useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
->>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43
 import Image from 'react-bootstrap/Image';
 import OrangeCircle from '../../images/orangeprogressncircle.png';
 import WhiteChart from '../../images/whitechart.png';
@@ -25,7 +14,7 @@ import WhiteLock from '../../images/whitelock.png';
 // import Aos from "aos";
 // import "aos/dist/aos.css";
 
-import React from 'react';
+
 import styled from 'styled-components';
 import { Controller, Scene } from 'react-scrollmagic';
 import { Tween, Timeline } from 'react-gsap';
@@ -188,23 +177,18 @@ const SectionOne = ()=>{
         {(progress) => (
           <div className="sticky">
             <Timeline totalProgress={progress} paused>
-
               <Tween
                 from={{ opacity: 1, x: '55%', top: '30%', scale: 1.5, }}
                 to={{ opacity: 0, x: '110%', top: '30%', duration: .5 }}
               >
                 <div className="animation">
-
                   <Image style={{
                     width: "300px",
                     height: "300px",
-
                     // background: { Logo }
                   }} src={Upload5}></Image>
-
                 </div>
               </Tween>
-
               <Tween
                 from={{ opacity: 0, x: '10%', top: '60%', }}
                 to={{ opacity: 1, x: '55%', top: '30%', scale: 1.5, duration: 1 }}
@@ -227,7 +211,6 @@ const SectionOne = ()=>{
                 target={
                   <div className="heading">
                     <h1>Database Management & File Uploads</h1>
-
                   </div>
                 }
               >
@@ -243,7 +226,6 @@ const SectionOne = ()=>{
                 target={
                   <div className="heading2">
                     <h2>Easily store and retrieve data from anywhere<br></br>Online and Offline.</h2>
-
                   </div>
                 }
               >

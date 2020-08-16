@@ -13,7 +13,7 @@ import AddIcon from '../../images/addIcon.png';
 import CalenderIcon from '../../images/calenderIcon.png';
 import { Link } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination'
-import Dashboard from "../../pages/Dashboard/Dashboard";
+import Dashboard from "../../pages/Dashboard";
 import NewDbModal from "../NewDbModal";
 import NewFileUploadModal from "../NewFileUploadModal";
 import Databases from "../Databases";
