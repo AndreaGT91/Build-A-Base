@@ -25,9 +25,7 @@ const Login = (props) => {
     password: "",
     errors: {}
   });
-
   const history = useHistory();
-
   useEffect(() => {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (props.auth.isAuthenticated) {
@@ -35,43 +33,34 @@ const Login = (props) => {
       history.push("/Dashboard");
     }
   })
-
   useEffect(() => {
     setFormData((prevState) => ({
       ...prevState,
       errors: props.errors
     }));
   }, [props.errors])
-
   useEffect(() => {
     if (props.auth.isAuthenticated) {
       history.push("/Dashboard") // push user to dashboard when they login
     }
   }, [props.auth.isAuthenticated])
-
   function handleChange(event) {
     event.persist();
-
     setFormData((prevState) => ({
       ...prevState,
       [event.target.id]: event.target.value,
       errors: {}
     }))
   };
-
   function handleSubmit(event) {
     event.preventDefault();
-
     const userData = {
       email: formData.email,
       password: formData.password,
     };
-
     props.loginUser(userData);
   };
-
   const { errors } = formData;
-
   return (
     <div style={inlineStyle2}>
       <NavBar />

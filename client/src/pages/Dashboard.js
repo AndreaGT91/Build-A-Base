@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import Image from 'react-bootstrap/Image';
+
+import Image from 'react-bootstrap/Image';
 import { Container } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import NavBar2 from "../components/NavBar2";
-// import SideNavBar from "../components/SideNavBar";
-// import Databases from "../components/Databases";
-// import Upload5 from "../images/ac512x512.png";
+import SideNavBar from "../components/SideNavBar";
+import Databases from "../components/Databases";
+
+import Upload5 from '../images/ac512x512.png';
 
 const inlineStyle2 = {
-
-
 }
 
 const Dashboard = () => {
@@ -19,10 +19,11 @@ const Dashboard = () => {
     <div style={inlineStyle2}>
       <NavBar2 />
 
-      {/* <div style={inlineStyle2}>
+
+      <div style={inlineStyle2}>
         <NavBar2 />
         <SideNavBar />
-        <Databases /> */}
+        <Databases />
         {/* <Image style={{ /* Rectangle 6 */}
         {/* width: "50%",
           height: "50%",
@@ -33,9 +34,11 @@ const Dashboard = () => {
           position: "relative", */}
                   {/* }} src={ Upload5 }></Image>
           <Databases/>
-                */}
-      {/* </div>
-      <Image style={{
+       */}
+
+      </div>
+
+      <Image style={{ /* Rectangle 6 */
         width: "50%",
         height: "50%",
         opacity: "0.1",
@@ -44,7 +47,8 @@ const Dashboard = () => {
         marginLeft: "35%",
         position: "relative",
       }} src={Upload5}>
-      </Image> */}
+      </Image>
+
 
       {/* <Databases/> */}
 

@@ -11,14 +11,13 @@ import Logo from '../../images/android-chrome-192x192.png';
 
 function NavBar() {
   return (
-    <div>
-      <Navbar collapseOnSelect expand="lg" className="navBarClass" sticky="top" fixed="top" variant="light"  >
+    <>
+      <Navbar collapseOnSelect expand="lg" className="navBarClass" sticky="top" fixed="top"    >
         <Navbar.Brand href="/">
           <Image style={{ /* Rectangle 6 */
             width: "87px",
             height: "73px",
-            // background: { Logo }
-          }} src={Logo} fluid />
+          }} src={Logo} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -34,7 +33,6 @@ function NavBar() {
           <Form>
             <Form.Row className="align-items-center">
 
-
               <Col xs="auto">
                 <Link to='/Dashboard'>
                 </Link>
@@ -44,8 +42,8 @@ function NavBar() {
           </Form>
         </Navbar.Collapse>
       </Navbar>
-    </div>
-  );
+    </>
+  )
 };
 
 export default NavBar;
