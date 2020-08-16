@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 
 // Load input validation
 const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/Login");
+const validateLoginInput = require("../validation/login");
 const validateForgotInput = require("../validation/forgot");
 
 // Defining methods for the Users Controller
@@ -18,7 +18,6 @@ module.exports = {
   create: function (request, response) {
     // Form validation
     const { errors, isValid } = validateRegisterInput(request.body);
-
     // Check validation
     if (!isValid) {
       return response.status(400).json(errors);

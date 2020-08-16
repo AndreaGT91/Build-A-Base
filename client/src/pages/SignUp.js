@@ -1,21 +1,23 @@
   
 import React, { useState, useEffect } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-// import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Card from 'react-bootstrap/Card';
-import Upload5 from '../images/ac512x512.png';
-import Image from 'react-bootstrap/Image';
-import NavBar from '../components/NavBar';
-import { registerUser } from '../actions/authActions';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const inlineStyle2 = {
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+// import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Card from 'react-bootstrap/Card';
+import Image from 'react-bootstrap/Image';
 
+import Upload5 from '../images/ac512x512.png';
+import NavBar from "../components/NavBar";
+import { registerUser } from '../actions/authActions';
+
+const inlineStyle2 = {
+  background: 'linear-gradient(180deg, #e4f5fc 10%, white 50%, white)'
 };
 
 const SignUp = (props) => {
@@ -88,14 +90,13 @@ const SignUp = (props) => {
         <hr></hr>
         <Card.Body>
           <Form onSubmit={handleSubmit}>
-
-
             <Form.Row>
               <Form.Group as={Col} controlId="firstName">
                 <Form.Label>First Name</Form.Label>
                 <Form.Control
                   type="firstName"
                   placeholder="First Name"
+                  autoComplete="fname"
                   onChange={handleChange}
                   value={formData.firstName}
                   error={errors.firstName}
@@ -111,6 +112,7 @@ const SignUp = (props) => {
                 <Form.Control
                   type="lastName"
                   placeholder="Last Name"
+                  autoComplete="lname"
                   onChange={handleChange}
                   value={formData.lastName}
                   error={errors.lastName}
@@ -129,6 +131,7 @@ const SignUp = (props) => {
                   type="email"
                   placeholder="Enter email"
                   onChange={handleChange}
+                  autoComplete="email"
                   value={formData.email}
                   error={errors.email}
                   className={classnames("", {
@@ -145,6 +148,7 @@ const SignUp = (props) => {
                 <Form.Control
                   type="password"
                   placeholder="Password"
+                  autoComplete="new-password"
                   onChange={handleChange}
                   value={formData.password}
                   error={errors.password}
@@ -162,6 +166,7 @@ const SignUp = (props) => {
                 <Form.Control
                   type="password"
                   placeholder="Verify Password"
+                  autoComplete="new-password"
                   onChange={handleChange}
                   value={formData.password2}
                   error={errors.password2}
@@ -172,12 +177,10 @@ const SignUp = (props) => {
                 <span className="red-text">{errors.password2}</span>
               </Form.Group>
             </Form.Row>
-
             <hr></hr>
-            {/* <ButtonGroup aria-label="Login button group" style={{ textAlign: "center" }}> */}
-              <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
+            <Button style={{  marginLeft: "auto", marginRight: "auto", display:"block"  }} variant="primary" type="submit">
               Create Account
-              </Button>
+            </Button>          
               {/* {' '}
               <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="reset">
                 Cancel
@@ -188,7 +191,7 @@ const SignUp = (props) => {
       </Card>
     </div>
   )
-}
+};
 
 SignUp.propTypes = {
   registerUser: PropTypes.func.isRequired,

@@ -4,17 +4,21 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
-import NavBar from "../components/NavBar";
 
+import NavBar from "../components/NavBar";
 import Upload5 from '../images/ac512x512.png';
 
 const inlineStyle2 = {
-}
+    
+    
+  };
+ 
 const Login = (props) => {
   const [formData, setFormData] = useState({
     email: "",
@@ -79,6 +83,7 @@ const Login = (props) => {
               <Form.Control
                 type="email"
                 placeholder="Enter email"
+                autoComplete="email"
                 onChange={handleChange}
                 value={formData.email}
                 error={errors.email}
@@ -100,6 +105,7 @@ const Login = (props) => {
               <Form.Control
                 type="password"
                 placeholder="Password"
+                autoComplete="current-password"
                 onChange={handleChange}
                 value={formData.password}
                 error={errors.password}
@@ -124,12 +130,6 @@ const Login = (props) => {
               </Button>
             </ButtonGroup> */}
           </Form>
-          {/* <Col xs="auto">
-      <Button style={{  marginLeft: "auto", marginRight: "auto", display:"block"  }} type="submit" className="mb-2">
-        Login
-      </Button>
-    </Col>
-      </Form> */}
         </Card.Body>
       </Card>
     </div>

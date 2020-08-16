@@ -11,7 +11,6 @@ import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
 import "./style.scss";
-
 import Logo from '../../images/android-chrome-192x192.png';
 
 function NavBar2(props) {
@@ -31,7 +30,7 @@ function NavBar2(props) {
   return (
     <>
       <Navbar className="navBarClass" fixed="top" expand="lg" bg="dark" variant="dark">
-      {/* <Navbar style={{ height: '10%' }} className="navBarClass" fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark"> */}
+        {/* <Navbar style={{ height: '10%' }} className="navBarClass" fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark"> */}
         <Navbar.Brand href="/Home">
           <Image style={{
             width: "87px",
@@ -40,22 +39,22 @@ function NavBar2(props) {
         </Navbar.Brand>
         {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav"> */}
-          <Nav className="mr-auto">
-            <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
-          </Nav>
-          <Form>
-            <Form.Row className="align-items-center">
-              <Col xs="auto">
-                <Link to='/Login'>
-                  <Button
-                    style={{ backgroundColor: "#ff9000" }}
-                    onClick={handleLogoutClick}
-                    >logout
+        <Nav className="mr-auto">
+          <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
+        </Nav>
+        <Form>
+          <Form.Row className="align-items-center">
+            <Col xs="auto">
+              <Link to='/Login'>
+                <Button
+                  style={{ backgroundColor: "#ff9000" }}
+                  onClick={handleLogoutClick}
+                >logout
                   </Button>
-                </Link>
-              </Col>
-            </Form.Row>
-          </Form>
+              </Link>
+            </Col>
+          </Form.Row>
+        </Form>
         {/* </Navbar.Collapse> */}
       </Navbar>
     </>
@@ -71,4 +70,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect( mapStateToProps, { logoutUser } )( NavBar2 );
+export default connect(mapStateToProps, { logoutUser })(NavBar2);

@@ -1,16 +1,12 @@
-// import React from "react";
-// import Container from 'react-bootstrap/Container';
-// import Jumbotron from 'react-bootstrap/Jumbotron';
-// import Form from 'react-bootstrap/Form';
-// import Col from 'react-bootstrap/Col';
-// import InputGroup from 'react-bootstrap/InputGroup';
-// import FormControl from 'react-bootstrap/FormControl';
-// import Button from 'react-bootstrap/Button';
+import React from 'react';
+import styled from 'styled-components';
+import { Controller, Scene } from 'react-scrollmagic';
+import { Tween, Timeline } from 'react-gsap';
+
+
 import Image from 'react-bootstrap/Image';
-// import Upload3 from '../../images/csvIcon.png';
-// import Upload4 from '../../images/excelIcon.png';
 import Upload5 from '../../images/ac512x512.png';
-import '../SectionThree/style.scss';
+import './style.scss';
 
 // const SectionThree = ()=>{
 //     return(
@@ -34,11 +30,6 @@ import '../SectionThree/style.scss';
 // }
 // export default SectionThree;
 
-
-import React from 'react';
-import styled from 'styled-components';
-import { Controller, Scene } from 'react-scrollmagic';
-import { Tween, Timeline } from 'react-gsap';
 
 const Sticky2Styled = styled.div`
   overflow: hidden;
@@ -111,7 +102,9 @@ const Sticky2Styled = styled.div`
 const SectionThree = () => (
   <Sticky2Styled>
     <Controller>
-      <Scene triggerHook="onLeave"
+      <Scene 
+        triggerHook="onLeave"
+        triggerElement={null}
         duration={1000}>
           
         {(progress) => (
@@ -127,10 +120,6 @@ const SectionThree = () => (
                 <Image style={{
                   width: "80%",
                   height: "80%",
-                 
-                  
-
-                  
                 }} src={Upload5}></Image>
 
               </div>
@@ -222,7 +211,6 @@ const SectionThree = () => (
         )}
       </Scene>
     </Controller>
-
   </Sticky2Styled>
 );
 
