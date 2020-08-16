@@ -25,15 +25,7 @@ const MyDataBase = () => {
 <NavBar2/>
 <SideNavBar/>
 
-<Image style={{ /* Rectangle 6 */
-width: "50%",
-height: "50%",
-opacity: "0.1",
-marginTop: "-50%",
 
-marginLeft: "35%",
-position: "relative",
-}} src={ Upload5 }></Image>
 <SetupDatabase/>
       
       

@@ -2,26 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FormGroup from 'react-bootstrap/FormGroup';
 import Col from 'react-bootstrap/Col';
+<<<<<<< HEAD:client/src/pages/SignUp/SignUp.js
+import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card';
-import Alert from 'react-bootstrap/Alert'
+import Container from 'react-bootstrap/Container'
+import Upload5 from '../../images/ac512x512.png';
+import Image from 'react-bootstrap/Image';
+import NavBar from "../../components/NavBar";
+
+=======
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+// import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Card from 'react-bootstrap/Card';
 import Upload5 from '../images/ac512x512.png';
 import Image from 'react-bootstrap/Image';
 import NavBar from '../components/NavBar';
 import { registerUser } from '../actions/authActions';
 import classnames from 'classnames';
-
-
+>>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43:client/src/pages/SignUp.js
 
 const inlineStyle2 = {
 
+};
 
+<<<<<<< HEAD:client/src/pages/SignUp/SignUp.js
+const inlineStyle2 = {
+    
+  background: 'linear-gradient(180deg, #e4f5fc 10%, white 50%, white)'
 }
-
-
+=======
 const SignUp = (props) => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -37,6 +50,7 @@ const SignUp = (props) => {
   useEffect(() => {
     // If logged in and user navigates to SignUp page, should redirect them to dashboard
     if (props.auth.isAuthenticated) {
+      // alert("Already logged in."); 
       history.push("/Dashboard");
     }
   })
@@ -46,7 +60,7 @@ const SignUp = (props) => {
       ...prevState,
       errors: props.errors
     }));
-  }, [props.errors])
+  }, [props.errors]);
 
   function handleChange(event) {
     event.persist();
@@ -68,14 +82,12 @@ const SignUp = (props) => {
       password: formData.password,
       password2: formData.password2
     };
+>>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43:client/src/pages/SignUp.js
 
     props.registerUser(newUser, props.history);
   };
 
-
-
   const { errors } = formData;
-
 
   return (
     <div style={inlineStyle2}>
@@ -179,15 +191,90 @@ const SignUp = (props) => {
               </Form.Group>
             </Form.Row>
 
+<<<<<<< HEAD:client/src/pages/SignUp/SignUp.js
+
+
+const SignUp = () =>{
+    return(
+        <div style={inlineStyle2}>
+        <NavBar/>
+<Image style={{ /* Rectangle 6 */
+width: "80%",
+height: "80%",
+opacity: "0.3",
+marginTop: "1%",
+
+marginLeft: "15%",
+position: "relative",
+}} src={ Upload5 }></Image>
+
+        <Card style={{ marginTop: "-50%", marginBottom: "10%", width: "40%", marginRight: "auto", marginLeft: "auto" }}>
+            <h1 style={{ textAlign: "center", marginTop: "3%", fontSize:'2vw'}}>Fill out information below</h1>
             <hr></hr>
-            <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
-              Create Account
+  <Card.Body>
+  <Form>
+  
+
+  <Form.Row>
+    <Form.Group as={Col} controlId="formGridFirstName">
+      <Form.Label>First Name</Form.Label>
+      <Form.Control type="firstName" placeholder="First Name" />
+    </Form.Group>
+   
+    <Form.Group as={Col} controlId="formGridLastName">
+      <Form.Label>Last Name</Form.Label>
+      <Form.Control type="lastName" placeholder="Last Name" />
+    </Form.Group>
+  </Form.Row>
+
+  <Form.Row>
+    <Form.Group as={Col} controlId="formGridEmail">
+      <Form.Label>Email</Form.Label>
+      <Form.Control type="email" placeholder="Enter email" />
+    </Form.Group>
+    </Form.Row>
+
+    <Form.Row>
+    <Form.Group as={Col} controlId="formGridPassword">
+      <Form.Label>Password</Form.Label>
+      <Form.Control type="password" placeholder="Password" />
+    </Form.Group>
+  </Form.Row>
+
+  <Form.Row>
+  <Form.Group as={Col} controlId="formGridVerifyPassword">
+      <Form.Label>Password</Form.Label>
+      <Form.Control type="password" placeholder="Verify Password" />
+    </Form.Group>
+    </Form.Row>
+  
+    <hr></hr>
+  <Button style={{  marginLeft: "auto", marginRight: "auto", display:"block"  }} variant="primary" type="submit">
+    Create Account
   </Button>
+</Form>
+  </Card.Body>
+</Card>
+
+</div>
+    )
+=======
+            <hr></hr>
+            {/* <ButtonGroup aria-label="Login button group" style={{ textAlign: "center" }}> */}
+              <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="submit">
+              Create Account
+              </Button>
+              {/* {' '}
+              <Button style={{ marginLeft: "auto", marginRight: "auto", display: "block" }} variant="primary" type="reset">
+                Cancel
+              </Button>
+            </ButtonGroup> */}
           </Form>
         </Card.Body>
       </Card>
     </div>
   )
+>>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43:client/src/pages/SignUp.js
 }
 
 SignUp.propTypes = {

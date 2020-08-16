@@ -4,13 +4,13 @@ const db = require("../models");
 module.exports = {
   findByUserId: function(request, response) {
     db.Bases
-      .find({ creatorID: request.params.id })
+      .findOne({ creatorID: request.params.id })
       .then(dbModel => response.json(dbModel))
       .catch(error => response.status(422).json(error));
   },
   findByName: function(request, response) {
     db.Bases
-      .find({ baseName: request.params.name })
+      .findOne({ baseName: request.params.name })
       .then(dbModel => {
         response.json(dbModel)
       })
