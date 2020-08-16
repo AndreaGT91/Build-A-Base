@@ -18,7 +18,6 @@ module.exports = {
   create: function (request, response) {
     // Form validation
     const { errors, isValid } = validateRegisterInput(request.body);
-
     // Check validation
     if (!isValid) {
       return response.status(400).json(errors);

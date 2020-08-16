@@ -82,6 +82,7 @@ const SectionOne = () => {
       <Controller>
         <Scene
           triggerHook="onLeave"
+          triggerElement={null}
           duration={3000}
           pin
         >
@@ -136,6 +137,6 @@ const SectionOne = () => {
       </Controller>
     </Sticky2Styled1>
   );
+};
 
-}
 export default SectionOne;

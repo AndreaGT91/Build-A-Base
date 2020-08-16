@@ -10,8 +10,13 @@
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  <!-- Materialize Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
 
   <title>Build-A-Base</title>
 </head>
@@ -22,42 +27,25 @@
   </noscript>
   <div id="root"></div>
 
-  <!-- Materialize Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- This prevents passive event violation, but causes error in materialize -->
+  <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
+
+  <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
+
+  <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
+
+  <script>var Alert = ReactBootstrap.Alert;</script>
+
+  <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
+
+  <!-- This prevents passive event violation -->
   <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
-  <link
-  rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-  crossorigin="anonymous"
-/>
-<script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
 
-<script
-  src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
-  crossorigin></script>
-
-<script
-  src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
-  crossorigin></script>
+  <!-- <script src="jquery-2.1.4.js"></script>
+  <script lang="javascript" src="xlsx.full.min.js"></script>
+  <script lang="javascript" src="FileSaver.min.js"></script> -->
 
 
-<script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
-
-<script
-  src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
-  crossorigin></script>
-
-<script
-  src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
-  crossorigin></script>
-  <script src="jquery-2.1.4.js"></script>
-<script lang="javascript" src="xlsx.full.min.js"></script>
-<script lang="javascript" src="FileSaver.min.js"></script>
-
-
-<script>var Alert = ReactBootstrap.Alert;</script>
+  <script>var Alert = ReactBootstrap.Alert;</script>
 
 </body>
 

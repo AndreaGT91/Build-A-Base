@@ -90,7 +90,7 @@ const Sticky2Styled = styled.div`
   }
 `;
 
-const MainSection = ()=>{
+const MainSection = () => {
 
 
 
@@ -104,6 +104,7 @@ const MainSection = ()=>{
     <Controller>
       <Scene
         triggerHook="onLeave"
+        triggerElement={null}
         duration={4500}
         pin
         
@@ -284,5 +285,6 @@ const MainSection = ()=>{
      </div>
     
     )
-}
+};
+
 export default MainSection;
