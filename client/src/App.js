@@ -1,19 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-<<<<<<< HEAD
+
 import NavBar from "./components/NavBar";
 import SectionOne from "./components/SectionOne";
 import SectionTwo from "./components/SectionTwo";
 import SectionThree from "./components/SectionThree";
 import SectionFour from "./components/SectionFour";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from "./pages/Login/Login";
-import SignUp from "./pages/SignUp/SignUp";
-import Home from "./pages/Home/Home";
-import Dashboard from "./pages/Dashboard/Dashboard";
+// import Login from "./pages/Login/Login";
+// import SignUp from "./pages/SignUp/SignUp";
+// import Home from "./pages/Home/Home";
+// import Dashboard from "./pages/Dashboard/Dashboard";
 import MyDatabase from "./pages/MyDatabase";
 import { Parallax } from "react-parallax";
-=======
+
 import { Provider } from "react-redux"
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
@@ -25,7 +25,7 @@ import BaseTable from "./pages/BaseTable";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
->>>>>>> 45e891cd2f37b57d75310792a74bf9251f9a5a43
+
 import "./App.scss";
 import store from "./store"
 import PrivateRoute from "./components/private-route/PrivateRoute";
