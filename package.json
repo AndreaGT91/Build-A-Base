@@ -63,6 +63,6 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "validator": "^13.1.1",
-    "xlsx": "^0.16.5"
+    "xlsx": "^0.17.0"
   }
 }
